@@ -68,7 +68,7 @@ const Student = sequelize.define('Students', {
         allowNull: false,
         validate: {
             isIn: {
-                args: [['admaster', 'adm', 'std']],
+                args: [['dir', 'tchr', 'std']],
             }
         }
     },
