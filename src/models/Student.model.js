@@ -58,7 +58,18 @@ const Student = sequelize.define('Students', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isAlpha: true
+            isIn: {
+                args: [['active', 'inative']]
+            }
+        }
+    },
+    typeUser: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isIn: {
+                args: [['admaster', 'adm', 'std']],
+            }
         }
     },
 },
