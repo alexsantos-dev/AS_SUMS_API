@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../data/data.config.js'
+import sequelize from '../data/data.config'
 
-const Student = sequelize.define('Students', {
+const Teacher = sequelize.define('Teachers', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -47,12 +47,15 @@ const Student = sequelize.define('Students', {
             is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
         }
     },
-    class: {
+    subject: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isIn: [['301', '302', '303', '304']]
-        }
+            isIn: {
+                args: [['english', 'mathematics', 'science', 'social studies', 'foreign languages', 'arts', 'electives']]
+            }
+        },
+        defaultValue: 'english'
     },
     status: {
         type: DataTypes.STRING,
@@ -79,6 +82,4 @@ const Student = sequelize.define('Students', {
     }
 )
 
-export default Student
-
-
+export default Teacher
