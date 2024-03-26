@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../data/data.config.js'
+import sequelize from '../../data/data.config.js'
 
 const Teacher = sequelize.define('Teachers', {
     id: {
@@ -47,16 +47,6 @@ const Teacher = sequelize.define('Teachers', {
             is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
         }
     },
-    subject: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isIn: {
-                args: [['english', 'mathematics', 'science', 'social studies', 'foreign languages', 'arts', 'electives']]
-            }
-        },
-        defaultValue: 'english'
-    },
     status: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -66,6 +56,14 @@ const Teacher = sequelize.define('Teachers', {
             }
         },
         defaultValue: 'active'
+    },
+    discipline: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isIn: [['Matemathics', 'Science', 'Arts', 'Enlish', 'Sociology']]
+        },
+        defaultValue: 'English'
     },
     typeUser: {
         type: DataTypes.STRING,

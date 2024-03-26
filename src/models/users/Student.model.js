@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../data/data.config.js'
+import sequelize from '../../data/data.config.js'
 
-const Administrator = sequelize.define('Administration', {
+const Student = sequelize.define('Students', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -47,6 +47,13 @@ const Administrator = sequelize.define('Administration', {
             is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
         }
     },
+    class: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isIn: [['301', '302', '303', '304']]
+        }
+    },
     status: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -60,7 +67,7 @@ const Administrator = sequelize.define('Administration', {
     typeUser: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'adm'
+        defaultValue: 'std'
     },
     reg: {
         type: DataTypes.VIRTUAL,
@@ -76,8 +83,13 @@ const Administrator = sequelize.define('Administration', {
             return this.getDataValue('reg')
         }
     }
+
 },
     {
         freezeTableName: true
     }
 )
+
+export default Student
+
+
