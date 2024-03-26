@@ -6,4 +6,4 @@ const router = Router()
 router.post('/students', StudentsControllers.addStudent)
 router.get('/students', StudentsControllers.searchStudents)
 
-export default router
+export default { router }
