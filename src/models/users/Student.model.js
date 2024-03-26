@@ -29,7 +29,7 @@ const Student = sequelize.define('Students', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            is: /^\d{2}-\d{9}\$/
+            is: /^\d{2}-?\d{9}$/
         }
     },
     email: {
@@ -43,9 +43,9 @@ const Student = sequelize.define('Students', {
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
-        }
+        /*         validate: {
+                    is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
+                } */
     },
     classRoom: {
         type: DataTypes.STRING,
@@ -71,18 +71,16 @@ const Student = sequelize.define('Students', {
     },
     reg: {
         type: DataTypes.VIRTUAL,
-        defaultValue: function () {
+        get() {
             const userType = this.getDataValue('typeUser')
             const currentDate = new Date()
             const month = String(currentDate.getMonth() + 1).padStart(2, '0')
             const year = String(currentDate.getFullYear())
             const initials = this.getDataValue('name').split(' ').map(part => part[0]).join('').toUpperCase()
             return `${userType}.${month}${year}.${initials}`
-        },
-        get() {
-            return this.getDataValue('reg')
         }
     }
+
 
 },
     {

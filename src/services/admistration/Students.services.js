@@ -2,10 +2,15 @@ import Student from '../../models/users/Student.model.js'
 import bcrypt from 'bcrypt'
 
 async function addStudent(name, sex, phone, email, password, classRoom) {
-    await Student.sync()
-    const hashPassword = await bcrypt.hash(password, 10)
-    const student = await Student.create({ name, sex, phone, email, hashPassword, classRoom })
-    return student
+    try {
+        await Student.sync()
+        const hashPassword = await bcrypt.hash(password, 10)
+        const student = await Student.create({ name, sex, phone, email, password: hashPassword, classRoom })
+        return student
+    }
+    catch (error) {
+        console.error(error)
+    }
 }
 
 async function searchStudents() {
