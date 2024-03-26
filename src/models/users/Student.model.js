@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../../data/data.config.js'
+import sequelize from '../../data/Data.config.js'
 
 const Student = sequelize.define('Students', {
     id: {
@@ -47,7 +47,7 @@ const Student = sequelize.define('Students', {
             is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
         }
     },
-    class: {
+    classRoom: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
