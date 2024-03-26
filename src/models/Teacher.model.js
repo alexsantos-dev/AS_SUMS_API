@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../data/data.config'
+import sequelize from '../data/data.config.js'
 
 const Teacher = sequelize.define('Teachers', {
     id: {
@@ -70,12 +70,23 @@ const Teacher = sequelize.define('Teachers', {
     typeUser: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            isIn: {
-                args: [['dir', 'tchr', 'std']],
-            }
-        }
+        defaultValue: 'tchr'
     },
+    reg: {
+        type: DataTypes.VIRTUAL,
+        defaultValue: function () {
+            const userType = this.getDataValue('typeUser')
+            const currentDate = new Date()
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+            const year = String(currentDate.getFullYear())
+            const initials = this.getDataValue('name').split(' ').map(part => part[0]).join('').toUpperCase()
+            return `${userType}.${month}${year}.${initials}`
+        },
+        get() {
+            return this.getDataValue('reg')
+        }
+    }
+
 },
     {
         freezeTableName: true
