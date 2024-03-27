@@ -5,6 +5,7 @@ const router = Router()
 
 router.post('/students', StudentsControllers.create)
 router.get('/students', StudentsControllers.findAll)
-router.post('/students/reg', StudentsControllers.findOneByReg)
+router.get('/students/:reg', StudentsControllers.findOneByReg)
+router.delete('/students:/reg', StudentsControllers.erase)
 
 export default { router }

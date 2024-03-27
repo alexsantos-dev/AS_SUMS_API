@@ -38,7 +38,7 @@ async function findAll(req, res) {
 
 async function findOneByReg(req, res) {
     try {
-        const { reg } = req.body
+        const { reg } = req.params
         const student = await StudentsServices.findOneByReg(reg)
 
         if (student) {
@@ -52,8 +52,32 @@ async function findOneByReg(req, res) {
     }
 }
 
+async function erase(req, res) {
+    try {
+        const { reg } = req.params
+        const student = await StudentsServices.findOneByReg(reg)
+
+        if (student) {
+            const result = await StudentsServices.erase()
+
+            if (result) {
+                res.status(200).json('Student erased successfully')
+            } else {
+                res.status(409).json('Error to erase student!')
+            }
+
+        } else {
+            res.status(404).json({ error: 'Student not found!' })
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error })
+    }
+}
+
 export default {
     create,
     findAll,
-    findOneByReg
+    findOneByReg,
+    erase
 }

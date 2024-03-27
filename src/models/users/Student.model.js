@@ -84,9 +84,10 @@ Student.beforeValidate((student, options) => {
     const currentDate = new Date()
     const seconds = String(currentDate.getSeconds()).padStart(2, '0')
     const minutes = String(currentDate.getMinutes()).padStart(2, '0')
-    const year = String(currentDate.getFullYear())
+    const hour = String(currentDate.getHours()).padStart(2, '0')
+    const year = String(currentDate.getFullYear()).slice(-2)
     const initials = student.name.split(' ').map(part => part[0]).join('').toUpperCase()
-    student.reg = `${userType}.${seconds}${minutes}.${year}.${initials}`
+    student.reg = `${userType}-${seconds}${minutes}${hour}-${year}-${initials}`
 })
 
 export default Student

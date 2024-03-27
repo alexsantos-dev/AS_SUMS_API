@@ -42,8 +42,24 @@ async function findOneByReg(reg) {
     }
 }
 
+async function erase(reg) {
+    try {
+        await Student.sync()
+        const student = await Student.destroy({
+            where: {
+                reg: reg
+            }
+        })
+        return student
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 export default {
     create,
     findAll,
-    findOneByReg
+    findOneByReg,
+    erase
 }
