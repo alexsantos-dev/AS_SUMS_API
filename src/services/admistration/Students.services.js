@@ -42,6 +42,32 @@ async function findOneByReg(reg) {
     }
 }
 
+async function findOneById(id) {
+    try {
+        await Student.sync()
+        const student = await Student.findByPk(id)
+        return student
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+async function update(id, fields) {
+    try {
+        await Student.sync()
+        const student = await Student.update(fields, {
+            where: {
+                id: id
+            }
+        })
+        return student
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 async function erase(reg) {
     try {
         await Student.sync()
@@ -60,6 +86,8 @@ async function erase(reg) {
 export default {
     create,
     findAll,
+    findOneById,
     findOneByReg,
+    update,
     erase
 }

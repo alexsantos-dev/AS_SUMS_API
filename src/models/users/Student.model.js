@@ -43,9 +43,9 @@ const Student = sequelize.define('Students', {
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-        /*         validate: {
-                    is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
-                } */
+        validate: {
+            len: [8, 100]
+        }
     },
     classRoom: {
         type: DataTypes.STRING,
@@ -80,14 +80,16 @@ const Student = sequelize.define('Students', {
 )
 
 Student.beforeValidate((student, options) => {
-    const userType = student.typeUser
-    const currentDate = new Date()
-    const seconds = String(currentDate.getSeconds()).padStart(2, '0')
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0')
-    const hour = String(currentDate.getHours()).padStart(2, '0')
-    const year = String(currentDate.getFullYear()).slice(-2)
-    const initials = student.name.split(' ').map(part => part[0]).join('').toUpperCase()
-    student.reg = `${userType}-${seconds}${minutes}${hour}-${year}-${initials}`
+    if (student && student.name) {
+        const userType = student.typeUser
+        const currentDate = new Date()
+        const seconds = String(currentDate.getSeconds()).padStart(2, '0')
+        const minutes = String(currentDate.getMinutes()).padStart(2, '0')
+        const hour = String(currentDate.getHours()).padStart(2, '0')
+        const year = String(currentDate.getFullYear()).slice(-2)
+        const initials = student.name.split(' ').map(part => part[0]).join('').toUpperCase()
+        student.reg = `${userType}-${seconds}${minutes}${hour}-${year}-${initials}`
+    }
 })
 
 export default Student

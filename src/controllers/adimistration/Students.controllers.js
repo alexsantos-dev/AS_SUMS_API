@@ -1,4 +1,5 @@
 import StudentsServices from '../../services/admistration/Students.services.js'
+import bcrypt from 'bcrypt'
 
 async function create(req, res) {
     try {
@@ -13,7 +14,7 @@ async function create(req, res) {
                 res.status(400).json({ error: 'Error adding student!' })
             }
         } else {
-            res.status(409).json({ error: 'Send all fields to add student!' })
+            res.status(409).json({ error: 'Send all fields for add student!' })
         }
     }
     catch (error) {
@@ -52,6 +53,52 @@ async function findOneByReg(req, res) {
     }
 }
 
+async function findOneById(req, res) {
+    try {
+        const { id } = req.params
+        const student = await StudentsServices.findOneById(id)
+
+        if (student) {
+            res.status(200).json(student)
+        } else {
+            res.status(404).json({ error: 'Student not found!' })
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error })
+    }
+}
+
+async function update(req, res) {
+    try {
+        const { id } = req.params
+        const fields = req.body
+
+        const student = await StudentsServices.findOneById(id)
+
+        if (student) {
+            if (fields.password) {
+                fields.password = await bcrypt.hash(fields.password, 10)
+            }
+            if (fields) {
+                const update = await StudentsServices.update(id, fields)
+                if (update) {
+                    res.status(200).json({ message: 'Student updated successfully!' })
+                } else {
+                    res.status(400).json({ error: 'Error updating student!' })
+                }
+            } else {
+                res.status(409).json({ error: 'Send some field for update student!' })
+            }
+        } else {
+            res.status(404).json({ error: 'Student not found!' })
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error })
+    }
+}
+
 async function erase(req, res) {
     try {
         const { reg } = req.params
@@ -79,5 +126,7 @@ export default {
     create,
     findAll,
     findOneByReg,
+    findOneById,
+    update,
     erase
 }
