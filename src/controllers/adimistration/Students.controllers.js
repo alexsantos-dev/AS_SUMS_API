@@ -58,7 +58,7 @@ async function erase(req, res) {
         const student = await StudentsServices.findOneByReg(reg)
 
         if (student) {
-            const result = await StudentsServices.erase()
+            const result = await StudentsServices.erase(reg)
 
             if (result) {
                 res.status(200).json('Student erased successfully')
