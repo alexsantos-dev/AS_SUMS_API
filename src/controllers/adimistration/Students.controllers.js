@@ -71,17 +71,17 @@ async function findOneById(req, res) {
 
 async function update(req, res) {
     try {
-        const { id } = req.params
+        const { reg } = req.params
         const fields = req.body
 
-        const student = await StudentsServices.findOneById(id)
+        const student = await StudentsServices.findOneByReg(reg)
 
         if (student) {
             if (fields.password) {
                 fields.password = await bcrypt.hash(fields.password, 10)
             }
-            if (fields) {
-                const update = await StudentsServices.update(id, fields)
+            if (Object.keys(fields).length > 0 && Object.values(fields).some(value => value !== "")) {
+                const update = await StudentsServices.update(reg, fields)
                 if (update) {
                     res.status(200).json({ message: 'Student updated successfully!' })
                 } else {

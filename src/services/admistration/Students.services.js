@@ -53,12 +53,12 @@ async function findOneById(id) {
     }
 }
 
-async function update(id, fields) {
+async function update(reg, fields) {
     try {
         await Student.sync()
         const student = await Student.update(fields, {
             where: {
-                id: id
+                reg: reg
             }
         })
         return student
