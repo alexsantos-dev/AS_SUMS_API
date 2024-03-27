@@ -70,23 +70,24 @@ const Student = sequelize.define('Students', {
         defaultValue: 'std'
     },
     reg: {
-        type: DataTypes.VIRTUAL,
-        get() {
-            const userType = this.getDataValue('typeUser')
-            const currentDate = new Date()
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0')
-            const year = String(currentDate.getFullYear())
-            const initials = this.getDataValue('name').split(' ').map(part => part[0]).join('').toUpperCase()
-            return `${userType}.${month}${year}.${initials}`
-        }
-    }
-
-
-},
-    {
-        freezeTableName: true
-    }
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+}, {
+    freezeTableName: true
+}
 )
+
+Student.beforeValidate((student, options) => {
+    const userType = student.typeUser
+    const currentDate = new Date()
+    const seconds = String(currentDate.getSeconds()).padStart(2, '0')
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0')
+    const year = String(currentDate.getFullYear())
+    const initials = student.name.split(' ').map(part => part[0]).join('').toUpperCase()
+    student.reg = `${userType}.${seconds}${minutes}.${year}.${initials}`
+})
 
 export default Student
 

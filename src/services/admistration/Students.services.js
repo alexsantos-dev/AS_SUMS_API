@@ -1,7 +1,7 @@
 import Student from '../../models/users/Student.model.js'
 import bcrypt from 'bcrypt'
 
-async function addStudent(name, sex, phone, email, password, classRoom) {
+async function create(name, sex, phone, email, password, classRoom) {
     try {
         await Student.sync()
         const hashPassword = await bcrypt.hash(password, 10)
@@ -13,16 +13,37 @@ async function addStudent(name, sex, phone, email, password, classRoom) {
     }
 }
 
-async function searchStudents() {
-    await Student.sync()
-    const students = await Student.findAll({
-        order: [['updatedAt', 'desc']]
-    })
+async function findAll() {
+    try {
+        await Student.sync()
+        const students = await Student.findAll({
+            order: [['updatedAt', 'desc']]
+        })
 
-    return students
+        return students
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+async function findOneByReg(reg) {
+    try {
+        await Student.sync()
+        const student = await Student.findOne({
+            where: {
+                reg: reg
+            }
+        })
+        return student
+    }
+    catch (error) {
+        console.error(error)
+    }
 }
 
 export default {
-    addStudent,
-    searchStudents
+    create,
+    findAll,
+    findOneByReg
 }

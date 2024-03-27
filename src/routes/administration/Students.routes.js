@@ -3,7 +3,8 @@ import StudentsControllers from '../../controllers/adimistration/Students.contro
 
 const router = Router()
 
-router.post('/students', StudentsControllers.addStudent)
-router.get('/students', StudentsControllers.searchStudents)
+router.post('/students', StudentsControllers.create)
+router.get('/students', StudentsControllers.findAll)
+router.post('/students/reg', StudentsControllers.findOneByReg)
 
 export default { router }
