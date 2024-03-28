@@ -5,7 +5,13 @@ const Student = sequelize.define('Students', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue: DataTypes.UUIDV4,
+        unique: true,
+        validate: {
+            isUUID: {
+                args: 4
+            }
+        }
     },
     name: {
         type: DataTypes.STRING,
@@ -23,7 +29,7 @@ const Student = sequelize.define('Students', {
             isIn: {
                 args: [['m', 'f']],
             }
-        }
+        },
     },
     phone: {
         type: DataTypes.STRING,
@@ -67,7 +73,10 @@ const Student = sequelize.define('Students', {
     typeUser: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'std'
+        defaultValue: 'std',
+        validate: {
+            is: 'std'
+        },
     },
     reg: {
         type: DataTypes.STRING,
@@ -80,6 +89,7 @@ const Student = sequelize.define('Students', {
 )
 
 Student.beforeValidate((student, options) => {
+
     if (student && student.name) {
         const userType = student.typeUser
         const currentDate = new Date()

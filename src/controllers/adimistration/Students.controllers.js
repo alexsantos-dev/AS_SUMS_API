@@ -77,18 +77,23 @@ async function update(req, res) {
         const student = await StudentsServices.findOneByReg(reg)
 
         if (student) {
+            const allowedFields = ['name', 'phone', 'email', 'classRoom', 'status']
+            const isValidUpdate = Object.keys(fields).every(field => allowedFields.includes(field))
+
+            if (!isValidUpdate || Object.keys(fields).length === 0) {
+                return res.status(400).json({ error: 'Update contains invalid fields!' })
+            }
+
             if (fields.password) {
                 fields.password = await bcrypt.hash(fields.password, 10)
             }
-            if (Object.keys(fields).length > 0 && Object.values(fields).some(value => value !== "")) {
-                const update = await StudentsServices.update(reg, fields)
-                if (update) {
-                    res.status(200).json({ message: 'Student updated successfully!' })
-                } else {
-                    res.status(400).json({ error: 'Error updating student!' })
-                }
+
+            const update = await StudentsServices.update(reg, fields)
+
+            if (update) {
+                res.status(200).json({ message: 'Student updated successfully!' })
             } else {
-                res.status(409).json({ error: 'Send some field for update student!' })
+                res.status(400).json({ error: 'Error updating student!' })
             }
         } else {
             res.status(404).json({ error: 'Student not found!' })
