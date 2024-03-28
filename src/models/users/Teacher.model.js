@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../../data/data.config.js'
+import sequelize from '../../data/Data.config.js'
 
 const Teacher = sequelize.define('Teachers', {
     id: {
@@ -77,7 +77,7 @@ const Teacher = sequelize.define('Teachers', {
         validate: {
             is: 'tchr'
         },
-    }, ,
+    },
     reg: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -3,11 +3,11 @@ import StudentsControllers from '../../controllers/adimistration/Students.contro
 
 const router = Router()
 
-router.post('/students', StudentsControllers.create)
-router.get('/students', StudentsControllers.findAll)
-router.get('/students/reg/:reg', StudentsControllers.findOneByReg)
-router.get('/students/id/:id', StudentsControllers.findOneById)
-router.patch('/students/:reg', StudentsControllers.update)
-router.delete('/students/:reg', StudentsControllers.erase)
+router.post('/', StudentsControllers.create)
+router.get('/', StudentsControllers.findAll)
+router.get('/reg/:reg', StudentsControllers.findOneByReg)
+router.get('/id/:id', StudentsControllers.findOneById)
+router.patch('/:reg', StudentsControllers.update)
+router.delete('/:reg', StudentsControllers.erase)
 
 export default { router }

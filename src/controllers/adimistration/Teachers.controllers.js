@@ -1,20 +1,20 @@
-import StudentsServices from '../../services/admistration/Students.services.js'
+import TeachersServices from '../../services/admistration/Teachers.services.js'
 import bcrypt from 'bcrypt'
 
 async function create(req, res) {
     try {
-        const { name, sex, phone, email, password, classRoom } = req.body
+        const { name, sex, phone, email, password, discipline } = req.body
 
-        if (name && sex && phone && email && password && classRoom) {
-            const result = await StudentsServices.create(name, sex, phone, email, password, classRoom)
+        if (name && sex && phone && email && password && discipline) {
+            const result = await TeachersServices.create(name, sex, phone, email, password, discipline)
 
             if (result) {
-                res.status(200).json({ message: 'Student added successfully!' })
+                res.status(200).json({ message: 'Teacher added successfully!' })
             } else {
-                res.status(400).json({ error: 'Error adding student!' })
+                res.status(400).json({ error: 'Error adding teacher!' })
             }
         } else {
-            res.status(409).json({ error: 'Send all fields for add student!' })
+            res.status(409).json({ error: 'Send all fields for add teacher!' })
         }
     }
     catch (error) {
@@ -24,12 +24,12 @@ async function create(req, res) {
 
 async function findAll(req, res) {
     try {
-        const students = await StudentsServices.findAll()
+        const teachers = await TeachersServices.findAll()
 
-        if (students.length > 0) {
-            res.status(200).json({ Students: students })
+        if (teachers.length > 0) {
+            res.status(200).json({ Teachers: teachers })
         } else {
-            res.status(404).json({ error: 'No students found!' })
+            res.status(404).json({ error: 'No teachers found!' })
         }
     }
     catch (error) {
@@ -40,12 +40,12 @@ async function findAll(req, res) {
 async function findOneByReg(req, res) {
     try {
         const { reg } = req.params
-        const student = await StudentsServices.findOneByReg(reg)
+        const teacher = await TeachersServices.findOneByReg(reg)
 
-        if (student) {
-            res.status(200).json(student)
+        if (teacher) {
+            res.status(200).json(teacher)
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ error: 'Teacher not found!' })
         }
     }
     catch (error) {
@@ -56,12 +56,12 @@ async function findOneByReg(req, res) {
 async function findOneById(req, res) {
     try {
         const { id } = req.params
-        const student = await StudentsServices.findOneById(id)
+        const teacher = await TeachersServices.findOneById(id)
 
-        if (student) {
-            res.status(200).json(student)
+        if (teacher) {
+            res.status(200).json(teacher)
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ error: 'Teacher not found!' })
         }
     }
     catch (error) {
@@ -74,9 +74,9 @@ async function update(req, res) {
         const { reg } = req.params
         const fields = req.body
 
-        const student = await StudentsServices.findOneByReg(reg)
+        const teacher = await TeachersServices.findOneByReg(reg)
 
-        if (student) {
+        if (teacher) {
             const allowedFields = ['name', 'phone', 'email', 'classRoom', 'status']
             const isValidUpdate = Object.keys(fields).every(field => allowedFields.includes(field))
 
@@ -88,15 +88,15 @@ async function update(req, res) {
                 fields.password = await bcrypt.hash(fields.password, 10)
             }
 
-            const result = await StudentsServices.update(reg, fields)
+            const result = await TeachersServices.update(reg, fields)
 
             if (result) {
-                res.status(200).json({ message: 'Student updated successfully!' })
+                res.status(200).json({ message: 'Teacher updated successfully!' })
             } else {
-                res.status(400).json({ error: 'Error updating student!' })
+                res.status(400).json({ error: 'Error updating teacher!' })
             }
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ error: 'Teacher not found!' })
         }
     }
     catch (error) {
@@ -107,15 +107,15 @@ async function update(req, res) {
 async function erase(req, res) {
     try {
         const { reg } = req.params
-        const student = await StudentsServices.findOneByReg(reg)
+        const teacher = await TeachersServices.findOneByReg(reg)
 
-        if (student) {
-            const result = await StudentsServices.erase(reg)
+        if (teacher) {
+            const result = await TeachersServices.erase(reg)
 
             if (result) {
-                res.status(200).json('Student erased successfully')
+                res.status(200).json('Teacher erased successfully')
             } else {
-                res.status(409).json('Error to erase student!')
+                res.status(409).json('Error to erase teacher!')
             }
 
         } else {

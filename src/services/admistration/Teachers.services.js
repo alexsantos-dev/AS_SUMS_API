@@ -1,11 +1,11 @@
-import Student from '../../models/users/Student.model.js'
+import Teacher from '../../models/users/Teacher.model.js'
 import bcrypt from 'bcrypt'
 
-async function create(name, sex, phone, email, password, classRoom) {
+async function create(name, sex, phone, email, password, discipline) {
     try {
         const hashPassword = await bcrypt.hash(password, 10)
-        const student = await Student.create({ name, sex, phone, email, password: hashPassword, classRoom })
-        return student
+        const teacher = await Teacher.create({ name, sex, phone, email, password: hashPassword, discipline })
+        return teacher
     }
     catch (error) {
         console.error(error)
@@ -14,11 +14,11 @@ async function create(name, sex, phone, email, password, classRoom) {
 
 async function findAll() {
     try {
-        const students = await Student.findAll({
+        const teachers = await Teacher.findAll({
             order: [['updatedAt', 'desc']]
         })
 
-        return students
+        return teachers
     }
     catch (error) {
         console.error(error)
@@ -27,12 +27,12 @@ async function findAll() {
 
 async function findOneByReg(reg) {
     try {
-        const student = await Student.findOne({
+        const teacher = await Teacher.findOne({
             where: {
                 reg: reg
             }
         })
-        return student
+        return teacher
     }
     catch (error) {
         console.error(error)
@@ -41,8 +41,8 @@ async function findOneByReg(reg) {
 
 async function findOneById(id) {
     try {
-        const student = await Student.findByPk(id)
-        return student
+        const teacher = await Teacher.findByPk(id)
+        return teacher
     }
     catch (error) {
         console.error(error)
@@ -51,12 +51,12 @@ async function findOneById(id) {
 
 async function update(reg, fields) {
     try {
-        const student = await Student.update(fields, {
+        const teacher = await Teacher.update(fields, {
             where: {
                 reg: reg
             }
         })
-        return student
+        return teacher
     }
     catch (error) {
         console.error(error)
@@ -65,12 +65,12 @@ async function update(reg, fields) {
 
 async function erase(reg) {
     try {
-        const student = await Student.destroy({
+        const teacher = await Teacher.destroy({
             where: {
                 reg: reg
             }
         })
-        return student
+        return teacher
     }
     catch (error) {
         console.error(error)
