@@ -5,7 +5,13 @@ const Administrator = sequelize.define('Administration', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue: DataTypes.UUIDV4,
+        unique: true,
+        validate: {
+            isUUID: {
+                args: 4
+            }
+        }
     },
     name: {
         type: DataTypes.STRING,
@@ -23,13 +29,13 @@ const Administrator = sequelize.define('Administration', {
             isIn: {
                 args: [['m', 'f']],
             }
-        }
+        },
     },
     phone: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            is: /^\d{2}-\d{9}\$/
+            is: /^\d{2}-?\d{9}$/
         }
     },
     email: {
@@ -44,7 +50,7 @@ const Administrator = sequelize.define('Administration', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            is: /^(?=.[a-zA-Z])(?=.\d)(?=.*[^\w\s])[A-Za-z\d^\w\s]{8,}$/
+            len: [8, 100]
         }
     },
     status: {
@@ -60,26 +66,34 @@ const Administrator = sequelize.define('Administration', {
     typeUser: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'adm'
+        defaultValue: 'adm',
+        validate: {
+            is: 'adm'
+        },
     },
     reg: {
-        type: DataTypes.VIRTUAL,
-        defaultValue: function () {
-            const userType = this.getDataValue('typeUser')
-            const currentDate = new Date()
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0')
-            const year = String(currentDate.getFullYear())
-            const initials = this.getDataValue('name').split(' ').map(part => part[0]).join('').toUpperCase()
-            return `${userType}.${month}${year}.${initials}`
-        },
-        get() {
-            return this.getDataValue('reg')
-        }
-    }
-},
-    {
-        freezeTableName: true
-    }
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+}, {
+    freezeTableName: true
+}
 )
+
+Administrator.beforeValidate((administrator, options) => {
+
+    if (administrator && administrator.name) {
+        const userType = administrator.typeUser
+        const currentDate = new Date()
+        const seconds = String(currentDate.getSeconds()).padStart(2, '0')
+        const minutes = String(currentDate.getMinutes()).padStart(2, '0')
+        const hour = String(currentDate.getHours()).padStart(2, '0')
+        const year = String(currentDate.getFullYear()).slice(-2)
+        const initials = administrator.name.split(' ').map(part => part[0]).join('').toUpperCase()
+        administrator.reg = `${userType}-${seconds}${minutes}${hour}-${year}-${initials}`
+    }
+})
+
 
 export default Administrator
