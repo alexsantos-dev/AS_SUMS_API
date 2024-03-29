@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch --no-warnings index.js"
+    "start": "node --watch --no-warnings index.js",
+    "dev": "node seed.js"
   },
   "keywords": [],
   "author": "Alex Santos",

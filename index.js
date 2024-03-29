@@ -6,7 +6,7 @@ import { configDotenv } from 'dotenv'
 import configureCors from './src/cors/Cors.config.js'
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3300
 
 configDotenv()
 configureCors(app)
