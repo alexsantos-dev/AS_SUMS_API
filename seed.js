@@ -1,14 +1,13 @@
-import Administratror from "./src/models/users/Administratror.model.js"
+import Administrator from "./src/models/users/Administrator.model.js"
 import bcrypt from "bcrypt"
 import sequelize from "./src/data/Data.config.js"
-import Administrator from './src/models/users/Administratror.model.js'
 
 async function seedAdmistrator() {
     try {
         Administrator.sync()
         const hashPassword = await bcrypt.hash('7803-Aob', 10)
 
-        const adm = await Administratror.create({
+        const adm = await Administrator.create({
             name: 'Don Adminastro',
             sex: 'm',
             phone: '99-123456789',

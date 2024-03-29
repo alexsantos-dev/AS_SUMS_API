@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../../data/data.config.js'
+import sequelize from '../../data/Data.config.js'
 
 const Discipline = sequelize.define('Disciplines', {
     id: {
@@ -10,10 +10,15 @@ const Discipline = sequelize.define('Disciplines', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
-    },
-}, {
-    freezeTableName: true
-})
+        unique: true,
+        validate: {
+            isIn: [['Matemathics', 'Science', 'Arts', 'English', 'Sociology']]
+        },
+    }
+},
+    {
+        freezeTableName: true
+    }
+)
 
 export default Discipline
