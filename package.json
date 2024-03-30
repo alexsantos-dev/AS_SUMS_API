@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node --watch --no-warnings index.js",
-    "dev": "node disciplineseed.js"
+    "dev": "node periodseed.js"
   },
   "keywords": [],
   "author": "Alex Santos",

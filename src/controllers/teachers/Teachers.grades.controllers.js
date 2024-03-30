@@ -1,18 +1,22 @@
-import GradeServices from '../../services/teachers/Grade.services.js'
+import TeacherGradesServices from '../../services/teachers/Teachers.grades.services.js'
 
 async function addGrade(req, res) {
     try {
         const { teacherId, studentId, disciplineId, periodId, value } = req.body
 
         if (teacherId && studentId && disciplineId && periodId && value) {
-            const result = await GradeServices.addGrade(teacherId, studentId, disciplineId, periodId, value)
+            const checkValidate = await TeacherGradesServices.checkGradeByPeriodStudentId(periodId, studentId)
+            if (!checkValidate) {
+                const result = await TeacherGradesServices.addGrade(teacherId, studentId, disciplineId, periodId, value)
 
-            if (result) {
-                res.status(200).json('Grade added successfully!')
+                if (result) {
+                    res.status(200).json('Grade added successfully!')
+                } else {
+                    res.status(400).json('Error adding grade!')
+                }
             } else {
-                res.status(400).json('Error adding grade!')
+                res.status(400).json('Period was added for this student!')
             }
-
         } else {
             res.status(409).json('Send all fields to add grade!')
         }
@@ -26,7 +30,7 @@ async function editGrade(req, res) {
     try {
         const { id } = req.params
         const fields = req.body
-        const checkId = await GradeServices.findGradeById(id)
+        const checkId = await TeacherGradesServices.findGradeById(id)
 
         if (checkId) {
             const allowedFields = ['teacherId', 'studentId', 'disciplineId', 'periodId', 'value']
@@ -36,7 +40,7 @@ async function editGrade(req, res) {
                 res.status(400).json({ error: 'Update contains invalid fields!' })
             }
 
-            const result = await GradeServices.editGrade(id, fields)
+            const result = await TeacherGradesServices.editGrade(id, fields)
             if (result) {
                 res.status(200).json({ message: 'Grade updated successfully!' })
             } else {
@@ -53,14 +57,14 @@ async function editGrade(req, res) {
 async function findGradeById(req, res) {
     try {
         const { id } = req.params
-        const result = await GradeServices.findGradeById(id)
+        const result = await TeacherGradesServices.findGradeById(id)
 
         if (result) {
             const fields = [result.StudentId, result.DisciplineId, result.PeriodId, result.TeacherId]
             const names = []
 
             for (const field of fields) {
-                const name = await GradeServices.getNameFieldById(field)
+                const name = await TeacherGradesServices.getNameFieldById(field)
                 names.push(name)
             }
 
@@ -79,8 +83,10 @@ async function findGradeById(req, res) {
     }
 }
 
+
+
 export default {
     addGrade,
     editGrade,
-    findGradeById
+    findGradeById,
 }

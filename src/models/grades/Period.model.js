@@ -3,9 +3,14 @@ import sequelize from '../../data/Data.config.js'
 
 const Period = sequelize.define('Periods', {
     id: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+        autoIncrement: true,
+        allowNull: false,
+        validate: {
+            min: 1,
+            max: 4
+        }
     },
     name: {
         type: DataTypes.STRING,

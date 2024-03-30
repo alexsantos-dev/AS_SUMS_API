@@ -43,22 +43,42 @@ async function findGradeById(id) {
     }
 }
 
-async function getNameFieldById(id) {
-    const models = [Student, Discipline, Period, Teacher]
-
-    for (const model of models) {
-        const result = await model.findByPk(id, {
-            atributes: ['name']
+async function checkGradeByPeriodStudentId(periodId, studentId) {
+    try {
+        const period = Grade.findOne({
+            where: {
+                PeriodId: periodId,
+                StudentId: studentId
+            }
         })
-        if (result) {
-            return result.name
-        }
+        return period
+    } catch (error) {
+        console.error({ error: error })
     }
 }
+
+async function getNameFieldById(id) {
+    try {
+        const models = [Student, Discipline, Period, Teacher]
+
+        for (const model of models) {
+            const result = await model.findByPk(id, {
+                atributes: ['name']
+            })
+            if (result) {
+                return result.name
+            }
+        }
+    } catch (error) {
+        console.error({ error: error })
+    }
+}
+
 
 export default {
     addGrade,
     editGrade,
     findGradeById,
-    getNameFieldById
+    checkGradeByPeriodStudentId,
+    getNameFieldById,
 }
