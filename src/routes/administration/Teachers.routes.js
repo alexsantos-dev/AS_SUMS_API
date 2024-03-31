@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import TeachersControllers from '../../controllers/adimistration/Teachers.controllers.js'
-
+import { verifyTypeUser } from '../../middlewares/Auth.middleware.js'
 const router = Router()
+
+router.use(verifyTypeUser('adm'))
 
 router.post('/', TeachersControllers.create)
 router.get('/', TeachersControllers.findAll)

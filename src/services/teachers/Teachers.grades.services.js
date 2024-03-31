@@ -6,7 +6,6 @@ import Teacher from '../../models/users/Teacher.model.js'
 
 async function addGrade(teacherId, studentId, disciplineId, periodId, value) {
     try {
-        await Grade.sync()
         const grade = Grade.create({
             TeacherId: teacherId,
             StudentId: studentId,

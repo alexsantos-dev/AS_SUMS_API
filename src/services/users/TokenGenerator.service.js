@@ -3,9 +3,9 @@ import { configDotenv } from 'dotenv'
 
 configDotenv()
 
-export function tokenGenerator(id) {
+export function tokenGenerator(typeUser) {
     try {
-        const token = jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: '1m' })
+        const token = jwt.sign({ typeUser: typeUser }, process.env.JWT_SECRET, { expiresIn: '3m' })
         return token
     }
     catch (error) {

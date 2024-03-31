@@ -1,8 +1,10 @@
-import sequelize from '../../data/Data.config.js'
+import Administrator from '../../models/users/Administrator.model.js'
+import Teacher from '../../models/users/Teacher.model.js'
+import Student from '../../models/users/Student.model.js'
 
 export async function globalFindOneByReg(reg) {
     try {
-        const allModels = Object.values(sequelize.models)
+        const allModels = [Administrator, Teacher, Student]
 
         for (const model of allModels) {
             const result = await model.findOne({
@@ -10,7 +12,9 @@ export async function globalFindOneByReg(reg) {
                     reg: reg
                 }
             })
-            return result
+            if (result) {
+                return result
+            }
         }
     }
     catch (error) {
