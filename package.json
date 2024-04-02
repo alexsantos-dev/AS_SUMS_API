@@ -19,7 +19,7 @@
   "scripts": {
     "start": "node --watch --no-warnings server.js",
     "dev": "node periodseed.js",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "Alex Santos",
