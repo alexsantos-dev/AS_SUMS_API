@@ -1,5 +1,5 @@
-import sequelize from './src/data/Data.config.js'
-import Discipline from './src/models/grades/Discipline.model.js'
+import sequelize from './Data.config.js'
+import Discipline from '../models/grades/Discipline.model.js'
 
 async function createDiscipline() {
     try {

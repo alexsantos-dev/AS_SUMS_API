@@ -1,6 +1,6 @@
-import Administrator from "./src/models/users/Administrator.model.js"
+import Administrator from "../models/users/Administrator.model.js"
 import bcrypt from "bcrypt"
-import sequelize from "./src/data/Data.config.js"
+import sequelize from "./Data.config.js"
 
 async function seedAdmistrator() {
     try {

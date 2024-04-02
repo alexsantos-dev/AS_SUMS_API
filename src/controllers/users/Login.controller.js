@@ -14,7 +14,7 @@ export async function Login(req, res) {
 
             if (checkPassword) {
                 const token = tokenGenerator(user.typeUser)
-                res.status(200).json({ msg: `ser logged successfully! ${user.typeUser}`, token })
+                res.status(200).json({ msg: `user logged successfully! ${user.typeUser}`, token })
             } else {
                 res.status(409).json({ error: 'Wrong password!' })
             }

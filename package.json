@@ -1,12 +1,25 @@
 {
   "name": "api_sgu",
   "version": "1.0.0",
-  "description": "Este projeto consiste em construir um sistema de gerenciamento de usuários onde os usuários podem se cadastrar, fazer login e acessar recursos protegidos. O sistema terá funcionalidades para registro, autenticação, autorização, segurança de senha, testes automatizados, integração contínua e implantação usando contêineres Docker.",
+  "description": "Este projeto consiste em construir um sistema escolar de gerenciamento de usuários onde os usuários podem se cadastrar, fazer login e acessar recursos protegidos. O sistema terá funcionalidades para registro, autenticação, autorização, segurança de senha, testes automatizados, integração e implantação contínua",
   "main": "index.js",
   "type": "module",
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.js$",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "scripts": {
-    "start": "node --watch --no-warnings index.js",
-    "dev": "node periodseed.js"
+    "start": "node --watch --no-warnings server.js",
+    "dev": "node periodseed.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Alex Santos",
@@ -20,5 +33,12 @@
     "sequelize": "^6.37.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
   }
 }
