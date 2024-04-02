@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node --watch --no-warnings server.js",
-    "dev": "node periodseed.js",
+    "dev": "node ./src/data/adm.seed.js",
     "test": "jest --watch"
   },
   "keywords": [],

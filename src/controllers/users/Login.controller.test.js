@@ -4,7 +4,7 @@ import app from '../../../index.js'
 describe('Users authentication login /usr/login', () => {
 
     const user = {
-        reg: 'adm-085311-24-DA',
+        reg: 'adm-524018-24-DA',
         password: '7803-Aob'
     }
 
@@ -26,7 +26,7 @@ describe('Users authentication login /usr/login', () => {
     })
 
     const userWrongPassword = {
-        reg: 'adm-085311-24-DA',
+        reg: 'adm-524018-24-DA',
         password: '8732yg2ry'
     }
 
