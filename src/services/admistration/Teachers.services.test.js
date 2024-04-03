@@ -19,7 +19,7 @@ describe('TeachersServices', () => {
         createdTeacher = await TeachersServices.create(teacherData.name, teacherData.sex, teacherData.phone, teacherData.email, teacherData.password, teacherData.discipline)
     })
     afterEach(async () => {
-        await Teacher.destroy({ where: {}, truncate: true })
+        await Teacher.destroy({ where: { email: 'teste@gamail.com' } })
     })
     afterAll(async () => {
         await sequelize.close()

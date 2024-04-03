@@ -7,7 +7,7 @@ describe('globalFindOneByReg', () => {
         await sequelize.sync()
     })
     afterAll(async () => {
-        await Student.destroy({ where: {}, truncate: true })
+        await Student.destroy({ where: { email: 'alkpc@gamail.com' } })
         await sequelize.close()
     })
     it('Should return the user if found in any model', async () => {

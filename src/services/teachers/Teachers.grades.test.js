@@ -1,12 +1,12 @@
 import TeachersGradesServices from './Teachers.grades.services.js'
-import Grade from '../../models/grades/Grade.model.js'
 import sequelize from '../../data/Data.config.js'
+import Grade from '../../models/grades/Grade.model.js'
 
 describe('TeachersGradesServices', () => {
     let createdGrade
     const gradeData = {
-        teacherId: 'dada9160-781e-4258-ba39-e320a6c5674b',
-        studentId: '73eec69c-387a-4772-bfd1-dcc0c76fd3ad',
+        teacherId: '9b12c5df-a276-4bfc-b50e-178aa550abf7',
+        studentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6',
         disciplineId: '17029a7a-f388-4acd-a1ca-e44aad5f6238',
         periodId: 1,
         value: 8.5
@@ -15,15 +15,15 @@ describe('TeachersGradesServices', () => {
         await sequelize.sync()
     })
     beforeEach(async () => {
-        createdGrade = await TeachersGradesServices.addGrade(gradeData.teacherId, gradeData.studentId, gradeData.disciplineId, gradeData.periodId, gradeData.value)
+        if (!createdGrade) { createdGrade = await TeachersGradesServices.addGrade(gradeData.teacherId, gradeData.studentId, gradeData.disciplineId, gradeData.periodId, gradeData.value) }
     })
     afterAll(async () => {
-        await Grade.destroy({ where: {}, truncate: true })
+        await Grade.destroy({ where: { id: createdGrade.id } })
         await sequelize.close()
     })
 
     describe('addGrade', () => {
-        it('should to add a grade', () => {
+        it('should to add a grade', async () => {
             expect(createdGrade).toBeDefined()
         })
     })
