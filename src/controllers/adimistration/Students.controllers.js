@@ -9,16 +9,14 @@ async function create(req, res) {
             const result = await StudentsServices.create(name, sex, phone, email, password, classRoom)
 
             if (result) {
-                res.status(200).json({ message: 'Student added successfully!' })
-            } else {
-                res.status(400).json({ error: 'Error adding student!' })
+                res.status(200).json({ msg: 'Student added successfully!', result })
             }
         } else {
-            res.status(409).json({ error: 'Send all fields for add student!' })
+            res.status(409).json({ err: 'Send all fields for add student!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -29,11 +27,11 @@ async function findAll(req, res) {
         if (students.length > 0) {
             res.status(200).json({ Students: students })
         } else {
-            res.status(404).json({ error: 'No students found!' })
+            res.status(404).json({ err: 'No students found!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -43,13 +41,13 @@ async function findOneByReg(req, res) {
         const student = await StudentsServices.findOneByReg(reg)
 
         if (student) {
-            res.status(200).json(student)
+            res.status(200).json({ Student: student })
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ err: 'Student not found!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -59,13 +57,13 @@ async function findOneById(req, res) {
         const student = await StudentsServices.findOneById(id)
 
         if (student) {
-            res.status(200).json(student)
+            res.status(200).json({ Student: student })
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ err: 'Student not found!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -81,7 +79,7 @@ async function update(req, res) {
             const isValidUpdate = Object.keys(fields).every(field => allowedFields.includes(field))
 
             if (!isValidUpdate || Object.keys(fields).length === 0) {
-                return res.status(400).json({ error: 'Update contains invalid fields!' })
+                return res.status(409).json({ err: 'Update contains invalid fields!' })
             }
 
             if (fields.password) {
@@ -91,16 +89,14 @@ async function update(req, res) {
             const result = await StudentsServices.update(reg, fields)
 
             if (result) {
-                res.status(200).json({ message: 'Student updated successfully!' })
-            } else {
-                res.status(400).json({ error: 'Error updating student!' })
+                res.status(200).json({ msg: 'Student updated successfully!' })
             }
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ err: 'Student not found!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -113,17 +109,14 @@ async function erase(req, res) {
             const result = await StudentsServices.erase(reg)
 
             if (result) {
-                res.status(200).json('Student erased successfully')
-            } else {
-                res.status(409).json('Error to erase student!')
+                res.status(200).json({ msg: 'Student erased successfully' })
             }
-
         } else {
-            res.status(404).json({ error: 'Student not found!' })
+            res.status(404).json({ err: 'Student not found!' })
         }
     }
     catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
