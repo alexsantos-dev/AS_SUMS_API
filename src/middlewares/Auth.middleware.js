@@ -6,11 +6,13 @@ configDotenv()
 export function verifyTypeUser(requiredUserType) {
     return function authUser(req, res, next) {
         try {
-            const token = req.headers.authorization
+            const authHeader = req.headers.authorization
 
-            if (!token) {
-                return res.status(401).json({ error: 'Token not provided' })
+            if (!authHeader || !authHeader.startsWith('Bearer ')) {
+                return res.status(401).json({ error: 'Token not provided or invalid' })
             }
+
+            const token = authHeader.split(' ')[1]
 
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
             const userType = decoded.typeUser
@@ -18,9 +20,11 @@ export function verifyTypeUser(requiredUserType) {
             if (!userType) {
                 return res.status(403).json({ error: 'User type not found in token' })
             }
+
             if (userType !== requiredUserType) {
                 return res.status(403).json({ error: `Forbidden: Not a ${requiredUserType} is ${userType}` })
             }
+
             req.typeUser = userType
             next()
         } catch (error) {
@@ -28,4 +32,3 @@ export function verifyTypeUser(requiredUserType) {
         }
     }
 }
-

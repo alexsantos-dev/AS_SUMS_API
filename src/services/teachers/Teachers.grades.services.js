@@ -29,7 +29,7 @@ async function editGrade(id, fields) {
         })
         return edit
     } catch (error) {
-        console.error({ error: error })
+        console.error(error)
     }
 }
 
@@ -38,7 +38,7 @@ async function findGradeById(id) {
         const grade = Grade.findByPk(id)
         return grade
     } catch (error) {
-        console.error({ error: error })
+        console.error(error)
     }
 }
 
@@ -52,7 +52,7 @@ async function checkGradeByPeriodStudentId(periodId, studentId) {
         })
         return period
     } catch (error) {
-        console.error({ error: error })
+        console.error(error)
     }
 }
 
@@ -69,7 +69,7 @@ async function getNameFieldById(id) {
             }
         }
     } catch (error) {
-        console.error({ error: error })
+        console.error(error)
     }
 }
 

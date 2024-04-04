@@ -5,7 +5,7 @@ configDotenv()
 
 export function tokenGenerator(typeUser) {
     try {
-        const token = jwt.sign({ typeUser: typeUser }, process.env.JWT_SECRET, { expiresIn: '3m' })
+        const token = jwt.sign({ typeUser: typeUser }, process.env.JWT_SECRET, { expiresIn: '24h' })
         return token
     }
     catch (error) {

@@ -8,21 +8,17 @@ async function addGrade(req, res) {
             const checkValidate = await TeacherGradesServices.checkGradeByPeriodStudentId(periodId, studentId)
             if (!checkValidate) {
                 const result = await TeacherGradesServices.addGrade(teacherId, studentId, disciplineId, periodId, value)
+                res.status(200).json({ msg: 'Grade added successfully!', gradeId: result.id })
 
-                if (result) {
-                    res.status(200).json('Grade added successfully!')
-                } else {
-                    res.status(400).json('Error adding grade!')
-                }
             } else {
-                res.status(400).json('Period was added for this student!')
+                res.status(409).json({ err: 'Period was added for this student!' })
             }
         } else {
-            res.status(409).json('Send all fields to add grade!')
+            res.status(406).json({ err: 'Send all fields to add grade!' })
         }
 
     } catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -33,24 +29,20 @@ async function editGrade(req, res) {
         const checkId = await TeacherGradesServices.findGradeById(id)
 
         if (checkId) {
-            const allowedFields = ['teacherId', 'studentId', 'disciplineId', 'periodId', 'value']
+            const allowedFields = ['TeacherId', 'StudentId', 'DisciplineId', 'PeriodId', 'value']
             const isValidUpdate = Object.keys(fields).every(field => allowedFields.includes(field))
-
-            if (!isValidUpdate || Object.keys(fields) === 0) {
-                res.status(400).json({ error: 'Update contains invalid fields!' })
-            }
-
             const result = await TeacherGradesServices.editGrade(id, fields)
-            if (result) {
-                res.status(200).json({ message: 'Grade updated successfully!' })
+
+            if (isValidUpdate && result) {
+                res.status(200).json({ msg: 'Grade updated successfully' })
             } else {
-                res.status(400).json({ error: 'Error updating grade!' })
+                res.status(400).json({ err: 'Update contains invalid fields!' })
             }
         } else {
-            res.status(404).json({ error: 'Grade not found!' })
+            res.status(404).json({ err: 'Grade not found!' })
         }
     } catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
@@ -73,13 +65,13 @@ async function findGradeById(req, res) {
             result.PeriodId = names[2]
             result.TeacherId = names[3]
 
-            res.status(200).json({ Grade: result })
+            res.status(200).json(result)
         } else {
-            res.status(404).json({ error: 'Grade not found!' })
+            res.status(404).json({ err: 'Grade not found!' })
         }
 
     } catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json(error)
     }
 }
 
