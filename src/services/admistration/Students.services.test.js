@@ -5,12 +5,12 @@ import sequelize from '../../data/Data.config.js'
 describe('StudentsServices', () => {
     let createdStudent
     const studentData = {
-        "name": "teste a",
-        "sex": "m",
-        "phone": "12-131236478",
-        "email": "teste@gamail.com",
-        "password": "7803-Aob",
-        "classRoom": "301"
+        name: "teste a",
+        sex: "m",
+        phone: "12-131236478",
+        email: "teste@gamail.com",
+        password: "7803-Aob",
+        classRoom: "301"
     }
     beforeAll(async () => {
         await sequelize.sync()

@@ -5,12 +5,12 @@ import Teacher from '../../models/users/Teacher.model.js'
 describe('TeachersServices', () => {
     let createdTeacher
     const teacherData = {
-        "name": "teste a",
-        "sex": "m",
-        "phone": "12-131236478",
-        "email": "teste@gamail.com",
-        "password": "7803-Aob",
-        "discipline": "English"
+        name: "teste a",
+        sex: "m",
+        phone: "12-131236478",
+        email: "teste@gamail.com",
+        password: "7803-Aob",
+        discipline: "English"
     }
     beforeAll(async () => {
         await sequelize.sync()

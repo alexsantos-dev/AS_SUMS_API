@@ -101,7 +101,7 @@ describe('TeachersGradesControllers', () => {
         })
         it('should return status 400 and error message when editing the grade', async () => {
             const field = {
-                value: false
+                "": ""
             }
             const res = await request(app)
                 .patch(`/tchr/grades/${id}`)
