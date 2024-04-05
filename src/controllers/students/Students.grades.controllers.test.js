@@ -36,7 +36,7 @@ describe('StudentsGradesControllers', () => {
         tchrToken = teacherLoginResponse.body.token
     })
     beforeEach(async () => {
-        const createdData = await request(app)
+        await request(app)
             .post('/tchr/grades')
             .send(gradeData)
             .set('Authorization', `Bearer ${tchrToken}`)

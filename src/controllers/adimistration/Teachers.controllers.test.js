@@ -38,7 +38,7 @@ describe('TeachersControllers', () => {
         await sequelize.close()
     })
 
-    describe('POST create', () => {
+    describe('POST create /adm/teachers', () => {
         it('should return status 200 and sucess message', async () => {
             const res = createdTeacher
             expect(res.status).toBe(200)
@@ -54,7 +54,7 @@ describe('TeachersControllers', () => {
             expect(res.body.err).toBe('Send all fields for add teacher!')
         })
     })
-    describe('GET findAll', () => {
+    describe('GET findAll /adm/teachers', () => {
         it('should return status 200 and a success message', async () => {
             const res = await request(app)
                 .get('/adm/teachers')
@@ -75,7 +75,7 @@ describe('TeachersControllers', () => {
             }
         })
     })
-    describe('GET findOneByReg', () => {
+    describe('GET findOneByReg /adm/teachers/reg/:reg', () => {
         it('should return status 200 and a Teacher', async () => {
             const res = await request(app)
                 .get(`/adm/teachers/reg/${createdTeacher.body.result.reg}`)
@@ -91,7 +91,7 @@ describe('TeachersControllers', () => {
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('GET findOneById', () => {
+    describe('GET findOneById /adm/teachers/id/:id', () => {
         it('should return status 200 and a Teacher', async () => {
             const res = await request(app)
                 .get(`/adm/teachers/id/${createdTeacher.body.result.id}`)
@@ -107,7 +107,7 @@ describe('TeachersControllers', () => {
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('PATCH update', () => {
+    describe('PATCH update /adm/teachers/:reg', () => {
         it('should return status 200 and sucess message', async () => {
             const fields = {
                 name: "FlingsBelta"
@@ -142,7 +142,7 @@ describe('TeachersControllers', () => {
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('DELETE erase', () => {
+    describe('DELETE erase /adm/teachers/:reg', () => {
         it('should return status 200 and success message', async () => {
             const res = await request(app)
                 .delete(`/adm/teachers/${createdTeacher.body.result.reg}`)

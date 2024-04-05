@@ -38,7 +38,7 @@ describe('StudentsControllers', () => {
         await sequelize.close()
     })
 
-    describe('POST create', () => {
+    describe('POST create /adm/students', () => {
         it('should return status 200 and sucess message', async () => {
             const res = createdStudent
             expect(res.status).toBe(200)
@@ -54,7 +54,7 @@ describe('StudentsControllers', () => {
             expect(res.body.err).toBe('Send all fields for add student!')
         })
     })
-    describe('GET findAll', () => {
+    describe('GET findAll /adm/students', () => {
         it('should return status 200 and a success message', async () => {
             const res = await request(app)
                 .get('/adm/students')
@@ -75,7 +75,7 @@ describe('StudentsControllers', () => {
             }
         })
     })
-    describe('GET findOneByReg', () => {
+    describe('GET findOneByReg /adm/students/reg/:reg', () => {
         it('should return status 200 and a student', async () => {
             const res = await request(app)
                 .get(`/adm/students/reg/${createdStudent.body.result.reg}`)
@@ -91,7 +91,7 @@ describe('StudentsControllers', () => {
             expect(res.body.err).toBe('Student not found!')
         })
     })
-    describe('GET findOneById', () => {
+    describe('GET findOneById /adm/students/id/:id', () => {
         it('should return status 200 and a student', async () => {
             const res = await request(app)
                 .get(`/adm/students/id/${createdStudent.body.result.id}`)
@@ -107,7 +107,7 @@ describe('StudentsControllers', () => {
             expect(res.body.err).toBe('Student not found!')
         })
     })
-    describe('PATCH update', () => {
+    describe('PATCH update /adm/students/:reg', () => {
         it('should return status 200 and sucess message', async () => {
             const fields = {
                 classRoom: "301"
@@ -142,7 +142,7 @@ describe('StudentsControllers', () => {
             expect(res.body.err).toBe('Student not found!')
         })
     })
-    describe('DELETE erase', () => {
+    describe('DELETE erase /adm/students:reg', () => {
         it('should return status 200 and success message', async () => {
             const res = await request(app)
                 .delete(`/adm/students/${createdStudent.body.result.reg}`)

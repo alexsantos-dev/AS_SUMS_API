@@ -122,7 +122,7 @@ describe('TeachersGradesControllers', () => {
             expect(res.body.err).toBe('Grade not found!')
         })
     })
-    describe('findGradeById', () => {
+    describe('GET findGradeById /tchr/grades/:id', () => {
         let id
         beforeEach(async () => {
             const gradeData = {

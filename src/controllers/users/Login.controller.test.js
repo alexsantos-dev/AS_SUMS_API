@@ -1,7 +1,7 @@
 import request from 'supertest'
 import app from '../../../index.js'
 
-describe('Users authentication login /usr/login', () => {
+describe('POST Users authentication login /usr/login', () => {
 
     const user = {
         reg: 'adm-524018-24-DA',
