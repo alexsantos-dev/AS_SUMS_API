@@ -19,7 +19,7 @@
   "scripts": {
     "start": "node --watch --no-warnings server.js",
     "dev": "node ./src/data/adm.seed.js",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Alex Santos",

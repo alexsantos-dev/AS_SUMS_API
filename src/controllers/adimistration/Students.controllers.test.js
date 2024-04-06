@@ -4,8 +4,16 @@ import Student from '../../models/users/Student.model.js'
 import app from '../../../index.js'
 
 describe('StudentsControllers', () => {
-    let createdStudent
     let token
+    let createdStudent
+    const studentData = {
+        name: "teste a",
+        sex: "m",
+        phone: "12-131236478",
+        email: "teste@gamail.com",
+        password: "7803-Aob",
+        classRoom: "301"
+    }
     beforeAll(async () => {
         await sequelize.sync()
         const studentLoginResponse = await request(app)
@@ -16,25 +24,14 @@ describe('StudentsControllers', () => {
             })
 
         token = studentLoginResponse.body.token
-    })
-    const studentData = {
-        name: "teste a",
-        sex: "m",
-        phone: "12-131236478",
-        email: "teste@gamail.com",
-        password: "7803-Aob",
-        classRoom: "301"
-    }
-    beforeEach(async () => {
+
         createdStudent = await request(app)
             .post('/adm/students')
             .send(studentData)
             .set('Authorization', `Bearer ${token}`)
     })
-    afterEach(async () => {
-        await Student.destroy({ where: { email: 'teste@gamail.com' } })
-    })
     afterAll(async () => {
+        await Student.destroy({ where: { email: 'teste@gamail.com' } })
         await sequelize.close()
     })
 
@@ -54,27 +51,6 @@ describe('StudentsControllers', () => {
             expect(res.body.err).toBe('Send all fields for add student!')
         })
     })
-    describe('GET findAll /adm/students', () => {
-        it('should return status 200 and a success message', async () => {
-            const res = await request(app)
-                .get('/adm/students')
-                .set('Authorization', `Bearer ${token}`)
-            expect(res.status).toBe(200)
-            expect(res.body.Students).toBeTruthy()
-        })
-        it('should return status 404 and error message', async () => {
-            const deletedStd = await request(app)
-                .delete(`/adm/students/${createdStudent.body.result.reg}`)
-                .set('Authorization', `Bearer ${token}`)
-            if (deletedStd.status === "200") {
-                const res = await request(app)
-                    .get('/adm/students')
-                    .set('Authorization', `Bearer ${token}`)
-                expect(res.status).toBe(404)
-                expect(res.body.err).toBe('No students found!')
-            }
-        })
-    })
     describe('GET findOneByReg /adm/students/reg/:reg', () => {
         it('should return status 200 and a student', async () => {
             const res = await request(app)
@@ -84,6 +60,7 @@ describe('StudentsControllers', () => {
             expect(res.body.Student).toBeTruthy()
         })
         it('should return status 404 and error message', async () => {
+
             const res = await request(app)
                 .get('/adm/students/reg/testReg')
                 .set('Authorization', `Bearer ${token}`)
@@ -93,6 +70,7 @@ describe('StudentsControllers', () => {
     })
     describe('GET findOneById /adm/students/id/:id', () => {
         it('should return status 200 and a student', async () => {
+
             const res = await request(app)
                 .get(`/adm/students/id/${createdStudent.body.result.id}`)
                 .set('Authorization', `Bearer ${token}`)
@@ -109,6 +87,7 @@ describe('StudentsControllers', () => {
     })
     describe('PATCH update /adm/students/:reg', () => {
         it('should return status 200 and sucess message', async () => {
+
             const fields = {
                 classRoom: "301"
             }
@@ -120,6 +99,7 @@ describe('StudentsControllers', () => {
             expect(res.body.msg).toBe('Student updated successfully!')
         })
         it('should return status 409 and error message', async () => {
+
             const fields = {
                 "": ""
             }
@@ -144,6 +124,7 @@ describe('StudentsControllers', () => {
     })
     describe('DELETE erase /adm/students:reg', () => {
         it('should return status 200 and success message', async () => {
+
             const res = await request(app)
                 .delete(`/adm/students/${createdStudent.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
@@ -156,6 +137,27 @@ describe('StudentsControllers', () => {
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(404)
             expect(res.body.err).toBe('Student not found!')
+        })
+    })
+    describe('GET findAll /adm/students', () => {
+        it('should return status 200 and a success message', async () => {
+            const res = await request(app)
+                .get('/adm/students')
+                .set('Authorization', `Bearer ${token}`)
+            expect(res.status).toBe(200)
+            expect(res.body.Students).toBeTruthy()
+        })
+        it('should return status 404 and error message', async () => {
+            const deletedStd = await request(app)
+                .delete(`/adm/students/${createdStudent.body.result.reg}`)
+                .set('Authorization', `Bearer ${token}`)
+            if (deletedStd.status === "200") {
+                const res = await request(app)
+                    .get('/adm/students')
+                    .set('Authorization', `Bearer ${token}`)
+                expect(res.status).toBe(404)
+                expect(res.body.err).toBe('No students found!')
+            }
         })
     })
 })

@@ -34,17 +34,14 @@ describe('StudentsGradesControllers', () => {
             })
 
         tchrToken = teacherLoginResponse.body.token
-    })
-    beforeEach(async () => {
+
         await request(app)
             .post('/tchr/grades')
             .send(gradeData)
             .set('Authorization', `Bearer ${tchrToken}`)
     })
-    afterEach(async () => {
-        await Grade.destroy({ where: { StudentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6' } })
-    })
     afterAll(async () => {
+        await Grade.destroy({ where: { StudentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6' } })
         await sequelize.close()
     })
     describe('GET findGradesByStudentId /std/grades/studentId', () => {

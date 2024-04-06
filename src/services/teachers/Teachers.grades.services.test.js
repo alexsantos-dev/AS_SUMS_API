@@ -13,11 +13,7 @@ describe('TeachersGradesServices', () => {
     }
     beforeAll(async () => {
         await sequelize.sync()
-    })
-    beforeEach(async () => {
-        if (!createdGrade) {
-            createdGrade = await TeachersGradesServices.addGrade(gradeData.teacherId, gradeData.studentId, gradeData.disciplineId, gradeData.periodId, gradeData.value)
-        }
+        createdGrade = await TeachersGradesServices.addGrade(gradeData.teacherId, gradeData.studentId, gradeData.disciplineId, gradeData.periodId, gradeData.value)
     })
     afterAll(async () => {
         await Grade.destroy({ where: { id: createdGrade.id } })
