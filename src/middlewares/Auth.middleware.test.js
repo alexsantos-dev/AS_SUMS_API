@@ -13,7 +13,7 @@ describe('AuthMiddleware', () => {
         const loginResponse = await request(app)
             .post('/usr/login')
             .send({
-                reg: 'std-270616-24-JS',
+                reg: 'std-142518-24-JS',
                 password: '7803-Aob'
             })
         const studentToken = loginResponse.body.token

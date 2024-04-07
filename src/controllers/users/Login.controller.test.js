@@ -11,7 +11,7 @@ describe('POST Users authentication login /usr/login', () => {
     it('Should be return a token', async () => {
         const res = await request(app).post('/usr/login').send(user)
         expect(res.status).toBe(200)
-        expect(res.body.msg).toBe('user logged successfully!')
+        expect(res.body.msg).toBe('User logged successfully!')
     })
 
     const nullUser = {
