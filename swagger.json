@@ -1,0 +1,858 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SGU API Documentation",
+    "description": "This documentation provides information about the SGU API endpoints and allows testing of all available routes. Don't forget to register and perform authorization.",
+    "contact": "alexsantos.web.developer@gmail.com",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/usr/login": {
+      "post": {
+        "summary": "Login to SGU",
+        "description": "Route responsible for logging in a registered user.",
+        "tags": ["Login"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reg": {
+                    "type": "string",
+                    "description": "Registration number of the user."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password of the user."
+                  }
+                },
+                "example": {
+                  "reg": "adm-524018-24-DA",
+                  "password": "7803-Aob"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in successfully.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "msg": "User logged successfully!",
+                  "token": "<JWT_TOKEN>"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User not found!"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Wrong password.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Wrong password!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/teachers": {
+      "post": {
+        "summary": "Create a new teacher",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "sex": { "type": "string" },
+                  "phone": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "discipline": { "type": "string" }
+                },
+                "required": [
+                  "name",
+                  "sex",
+                  "phone",
+                  "email",
+                  "password",
+                  "discipline"
+                ]
+              },
+              "example": {
+                "name": "Creusa Sampaio",
+                "sex": "f",
+                "phone": "12-919128361",
+                "email": "creusinhasp@gmail.com",
+                "password": "tcher123",
+                "discipline": "English"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Teacher added successfully!"
+          },
+          "409": {
+            "description": "Send all fields for add teacher!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all teachers",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of teachers"
+          },
+          "404": {
+            "description": "No teachers found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/teachers/reg/{reg}": {
+      "get": {
+        "summary": "Get teacher by registration number",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the teacher"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teacher details"
+          },
+          "404": {
+            "description": "Teacher not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/teachers/{reg}": {
+      "patch": {
+        "summary": "Update teacher details by registration number",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the teacher"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "phone": { "type": "string" },
+                  "email": { "type": "string" },
+                  "classRoom": { "type": "string" },
+                  "status": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Teacher updated successfully!"
+          },
+          "404": {
+            "description": "Teacher not found!"
+          },
+          "409": {
+            "description": "Update contains invalid fields!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete teacher by registration number",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the teacher"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teacher erased successfully"
+          },
+          "404": {
+            "description": "Teacher not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/teachers/id/{id}": {
+      "get": {
+        "summary": "Get teacher by ID",
+        "tags": ["ADM: Teachers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the teacher"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teacher details"
+          },
+          "404": {
+            "description": "Teacher not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/students": {
+      "post": {
+        "summary": "Create a new Student",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "sex": { "type": "string" },
+                  "phone": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "classRoom": { "type": "string" }
+                },
+                "required": [
+                  "name",
+                  "sex",
+                  "phone",
+                  "email",
+                  "password",
+                  "classRoom"
+                ]
+              },
+              "example": {
+                "name": "Jubisclana Santos",
+                "sex": "f",
+                "phone": "11-912345678",
+                "email": "jbsantos@gamail.com",
+                "password": "7803-Aob",
+                "classRoom": "301"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student added successfully!"
+          },
+          "409": {
+            "description": "Send all fields for add Student!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all Students",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "List of Students"
+          },
+          "404": {
+            "description": "No Students found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/students/reg/{reg}": {
+      "get": {
+        "summary": "Get Student by registration number",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the Student"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student details"
+          },
+          "404": {
+            "description": "Student not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/students/{reg}": {
+      "patch": {
+        "summary": "Update Student details by registration number",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the Student"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "phone": { "type": "string" },
+                  "email": { "type": "string" },
+                  "classRoom": { "type": "string" },
+                  "status": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student updated successfully!"
+          },
+          "404": {
+            "description": "Student not found!"
+          },
+          "409": {
+            "description": "Update contains invalid fields!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Student by registration number",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "reg",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration number of the Student"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student erased successfully"
+          },
+          "404": {
+            "description": "Student not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/adm/students/id/{id}": {
+      "get": {
+        "summary": "Get Student by ID",
+        "tags": ["ADM:Students"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Student"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student details"
+          },
+          "404": {
+            "description": "Student not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tchr/grades": {
+      "post": {
+        "summary": "Create a new Grade",
+        "tags": ["TCHR: Grades"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teacherId": { "type": "string" },
+                  "studentId": { "type": "string" },
+                  "disciplineId": { "type": "string" },
+                  "perioId": { "type": "number" },
+                  "value": { "type": "number" }
+                },
+                "required": [
+                  "teacherId",
+                  "studentId",
+                  "disciplineId",
+                  "perioId",
+                  "value"
+                ]
+              },
+              "example": {
+                "teacherId": "9b12c5df-a276-4bfc-b50e-178aa550abf7",
+                "studentId": "14f3ce21-62c0-430a-a6e2-c77127b018b6",
+                "disciplineId": "17029a7a-f388-4acd-a1ca-e44aad5f6238",
+                "periodId": "1",
+                "value": 10
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Grade added successfully!"
+          },
+          "406": {
+            "description": "Send all fields to add grade!"
+          },
+          "409": {
+            "description": "Period was added for this student!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tchr/grades/{id}": {
+      "get": {
+        "summary": "Get Grade by ID",
+        "tags": ["TCHR: Grades"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Grade"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grade details"
+          },
+          "404": {
+            "description": "Grade not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Grade by ID",
+        "tags": ["TCHR: Grades"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Grade"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teacherId": { "type": "string" },
+                  "studentId": { "type": "string" },
+                  "disciplineId": { "type": "string" },
+                  "perioId": { "type": "number" },
+                  "value": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Grade updated successfully"
+          },
+          "400": {
+            "description": "Update contains invalid fields!"
+          },
+          "404": {
+            "description": "Grade not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/std/grades/{studentId}": {
+      "get": {
+        "summary": "Get all Grades by StudentId",
+        "tags": ["STD: Grades"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Student"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grades details"
+          },
+          "400": {
+            "description": "No grades found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Administrator": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "sex": { "type": "string" },
+          "phone": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "status": { "type": "string" },
+          "typeUser": { "type": "string" },
+          "reg": { "type": "string" }
+        }
+      },
+      "Teacher": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "sex": { "type": "string" },
+          "phone": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "status": { "type": "string" },
+          "discipline": { "type": "string" },
+          "typeUser": { "type": "string" },
+          "reg": { "type": "string" }
+        }
+      },
+      "Students": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "sex": { "type": "string" },
+          "phone": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "classRoom": { "type": "string" },
+          "status": { "type": "string" },
+          "typeUser": { "type": "string" },
+          "reg": { "type": "string" }
+        }
+      },
+      "Discipline": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "Period": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "Grade": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "value": { "type": "number" },
+          "student": {
+            "$ref": "#/components/schemas/Students",
+            "description": "Student associated with this grade"
+          },
+          "period": {
+            "$ref": "#/components/schemas/Period",
+            "description": "Period associated with this grade"
+          },
+          "discipline": {
+            "$ref": "#/components/schemas/Discipline",
+            "description": "Discipline associated with this grade"
+          },
+          "teacher": {
+            "$ref": "#/components/schemas/Teacher",
+            "description": "Teacher associated with this grade"
+          }
+        }
+      }
+    }
+  }
+}

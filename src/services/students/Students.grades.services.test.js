@@ -6,8 +6,8 @@ import sequelize from '../../data/Data.config.js'
 describe('StudentsGradesServices', () => {
     let createdGrade
     const gradeData = {
-        teacherId: '9b12c5df-a276-4bfc-b50e-178aa550abf7',
-        studentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6',
+        teacherId: '091e1f3c-898b-4900-ab91-853f69d99b28',
+        studentId: '374fbf39-1c31-4727-8128-644e67c3cfb0',
         disciplineId: '17029a7a-f388-4acd-a1ca-e44aad5f6238',
         periodId: 1,
         value: 8.5

@@ -14,11 +14,13 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-import-attributes"
     ]
   },
   "scripts": {
     "start": "node --watch --no-warnings server.js",
-    "dev": "node ./src/data/adm.seed.js",
     "test": "jest"
   },
   "keywords": [],
@@ -32,10 +34,12 @@
     "jsonwebtoken": "^9.0.2",
     "sequelize": "^6.37.1",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",
+    "@babel/plugin-syntax-import-attributes": "^7.24.1",
     "@babel/preset-env": "^7.24.3",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",

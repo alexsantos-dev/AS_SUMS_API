@@ -8,8 +8,8 @@ describe('StudentsGradesControllers', () => {
     let tchrToken
     let stdId
     const gradeData = {
-        teacherId: '9b12c5df-a276-4bfc-b50e-178aa550abf7',
-        studentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6',
+        teacherId: '091e1f3c-898b-4900-ab91-853f69d99b28',
+        studentId: '374fbf39-1c31-4727-8128-644e67c3cfb0',
         disciplineId: '17029a7a-f388-4acd-a1ca-e44aad5f6238',
         periodId: 1,
         value: 8.5
@@ -20,7 +20,7 @@ describe('StudentsGradesControllers', () => {
         const studentLoginResponse = await request(app)
             .post('/usr/login')
             .send({
-                reg: 'std-270616-24-JS',
+                reg: 'std-142518-24-JS',
                 password: '7803-Aob'
             })
 
@@ -29,7 +29,7 @@ describe('StudentsGradesControllers', () => {
         const teacherLoginResponse = await request(app)
             .post('/usr/login')
             .send({
-                reg: 'tchr-370616-24-CS',
+                reg: 'tchr-231818-24-CS',
                 password: 'tcher123'
             })
 
@@ -41,7 +41,7 @@ describe('StudentsGradesControllers', () => {
             .set('Authorization', `Bearer ${tchrToken}`)
     })
     afterAll(async () => {
-        await Grade.destroy({ where: { StudentId: '14f3ce21-62c0-430a-a6e2-c77127b018b6' } })
+        await Grade.destroy({ where: { StudentId: '374fbf39-1c31-4727-8128-644e67c3cfb0' } })
         await sequelize.close()
     })
     describe('GET findGradesByStudentId /std/grades/studentId', () => {
