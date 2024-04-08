@@ -8,7 +8,6 @@
     <em><code>► School User Management System </code></em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/github/license/alexsantos-dev/AS_SUMS_API?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/alexsantos-dev/AS_SUMS_API?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/alexsantos-dev/AS_SUMS_API?style=default&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/alexsantos-dev/AS_SUMS_API?style=default&color=0080ff" alt="repo-language-count">
@@ -39,13 +38,7 @@
 
 ## Overview
 
-<code>► INSERT-TEXT-HERE</code>
-
----
-
-## Features
-
-<code>► INSERT-TEXT-HERE</code>
+<code>► This project consists of building a school user management system where users can register, log in and access protected resources. The system has registration, authentication, authorization, password security, automated testing, integration and continuous deployment functionalities. </code>
 
 ---
 
