@@ -268,6 +268,8 @@
 
 <h4>From <code>source</code></h4>
 
+> <img src="https://github.com/alexsantos-dev/github-assets/blob/main/sums-api/start.png"/>
+>
 > Run AS_SUMS_API using the command below:
 >
 > ```console
@@ -282,6 +284,14 @@
 > $ npm test
 > ```
 
+### Documentation
+
+> Acess the documentation on route /doc. You can acess by shortcut on terminal:
+>
+> <img src="https://github.com/alexsantos-dev/github-assets/blob/main/sums-api/doc_shortcut.png"/>
+>
+> Documentation is available through Swagger:
+> <img src="https://github.com/alexsantos-dev/github-assets/blob/main/sums-api/documentation.png"/>
 ---
 
 ## Contributing
