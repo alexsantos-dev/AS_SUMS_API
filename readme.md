@@ -79,12 +79,12 @@
 
 | File                                                                                             | Summary                         |
 | ------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [swagger.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/swagger.json)           | <code>► INSERT-TEXT-HERE</code> |
-| [index.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/index.js)                   | <code>► INSERT-TEXT-HERE</code> |
-| [package.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/package.json)           | <code>► INSERT-TEXT-HERE</code> |
-| [package-lock.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/package-lock.json) | <code>► INSERT-TEXT-HERE</code> |
-| [dockerfile](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/dockerfile)               | <code>► INSERT-TEXT-HERE</code> |
-| [server.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/server.js)                 | <code>► INSERT-TEXT-HERE</code> |
+| [swagger.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/swagger.json)           | <code>► Documentation settings </code> |
+| [index.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/index.js)                   | <code>► Main script </code> |
+| [package.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/package.json)           | <code>► Project metadata and configurations, including dependencies and execution scripts. </code> |
+| [package-lock.json](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/package-lock.json) | <code>► Accurate recording of exact versions of all project dependencies to ensure reproducibility of the environment. </code> |
+| [dockerfile](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/dockerfile)               | <code>► Script to build Docker images with necessary configurations and commands. </code> |
+| [server.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/server.js)                 | <code>► Script responsible for starting the api server </code> |
 
 </details>
 
@@ -92,8 +92,8 @@
 
 | File                                                                                                                         | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Auth.middleware.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/middlewares/Auth.middleware.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Auth.middleware.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/middlewares/Auth.middleware.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Auth.middleware.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/middlewares/Auth.middleware.test.js) | <code>► Test module for AuthMiddleware </code> |
+| [Auth.middleware.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/middlewares/Auth.middleware.js)           | <code>► Module responsible for managing user authentication and authorization </code> |
 
 </details>
 
@@ -101,7 +101,7 @@
 
 | File                                                                                                                                 | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [Teachers.grades.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/teachers/Teachers.grades.routes.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Teachers.grades.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/teachers/Teachers.grades.routes.js) | <code>► Grade routes for Teachers </code> |
 
 </details>
 
@@ -109,7 +109,7 @@
 
 | File                                                                                                        | Summary                         |
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Login.route.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/users/Login.route.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Login.route.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/users/Login.route.js) | <code>► Login route for users </code> |
 
 </details>
 
@@ -117,7 +117,7 @@
 
 | File                                                                                                                                 | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [Students.grades.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/students/Students.grades.routes.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Students.grades.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/students/Students.grades.routes.js) | <code>► Grade routes for Students </code> |
 
 </details>
 
@@ -125,8 +125,8 @@
 
 | File                                                                                                                         | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Teachers.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/administration/Teachers.routes.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Students.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/administration/Students.routes.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Teachers.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/administration/Teachers.routes.js) | <code>► Teachers routes for Administration </code> |
+| [Students.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/administration/Students.routes.js) | <code>► Students routes for Administration </code> |
 
 </details>
 
@@ -134,9 +134,9 @@
 
 | File                                                                                                                        | Summary                         |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Administrator.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Administrator.model.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Student.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Student.model.js)             | <code>► INSERT-TEXT-HERE</code> |
-| [Teacher.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Teacher.model.js)             | <code>► INSERT-TEXT-HERE</code> |
+| [Administrator.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Administrator.model.js) | <code>► Administrator data model </code> |
+| [Student.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Student.model.js)             | <code>► Students data model </code> |
+| [Teacher.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/users/Teacher.model.js)             | <code>► Teacher data model </code> |
 
 </details>
 
@@ -144,9 +144,9 @@
 
 | File                                                                                                                   | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Discipline.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Discipline.model.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Period.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Period.model.js)         | <code>► INSERT-TEXT-HERE</code> |
-| [Grade.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Grade.model.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Discipline.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Discipline.model.js) | <code>► Discipline data model </code> |
+| [Period.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Period.model.js)         | <code>► Period data model </code> |
+| [Grade.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Grade.model.js)           | <code>► Grade data model </code> |
 
 </details>
 
@@ -154,8 +154,8 @@
 
 | File                                                                                                                                                 | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Teachers.grades.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.js)           | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.grades.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.test.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Teachers.grades.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.js)           | <code>► Grades Services for Teachers </code> |
+| [Teachers.grades.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.test.js) | <code>► Test module for TeacherGradesServices </code> |
 
 </details>
 
@@ -163,9 +163,9 @@
 
 | File                                                                                                                                | Summary                         |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [TokenGenerator.service.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/TokenGenerator.service.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Finder.service.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/Finder.service.js)                 | <code>► INSERT-TEXT-HERE</code> |
-| [Finder.service.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/Finder.service.test.js)       | <code>► INSERT-TEXT-HERE</code> |
+| [TokenGenerator.service.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/TokenGenerator.service.js) | <code>► Token Services for all users </code> |
+| [Finder.service.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/Finder.service.js)                 | <code>► Finder Services for all users </code> |
+| [Finder.service.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/users/Finder.service.test.js)       | <code>► Test module FinderService </code> |
 
 </details>
 
@@ -173,8 +173,8 @@
 
 | File                                                                                                                                                 | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Students.grades.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/students/Students.grades.services.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Students.grades.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/students/Students.grades.services.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Students.grades.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/students/Students.grades.services.test.js) | <code>► Grades Services for Students </code> |
+| [Students.grades.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/students/Students.grades.services.js)           | <code>► Test module for StudentsGradesServices </code> |
 
 </details>
 
@@ -182,10 +182,10 @@
 
 | File                                                                                                                                       | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [Students.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Students.services.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Students.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Students.services.js)           | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Teachers.services.js)           | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Teachers.services.test.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Students.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Students.services.test.js) | <code>► Test module for StudentsServices </code> |
+| [Students.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Students.services.js)           | <code>► CRUD Student Services for Administration </code> |
+| [Teachers.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Teachers.services.js)           | <code>► CRUD Teacher Services for Administration </code> |
+| [Teachers.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/admistration/Teachers.services.test.js) | <code>► Test module for TeachersServices </code> |
 
 </details>
 
@@ -193,7 +193,7 @@
 
 | File                                                                                                | Summary                         |
 | --------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Cors.config.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/cors/Cors.config.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Cors.config.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/cors/Cors.config.js) | <code>► Cors settings </code> |
 
 </details>
 
@@ -201,10 +201,10 @@
 
 | File                                                                                                                                                 | Summary                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Students.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Students.controllers.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Students.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Students.controllers.js)           | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Teachers.controllers.js)           | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Teachers.controllers.test.js) | <code>► INSERT-TEXT-HERE</code> |
+| [Students.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Students.controllers.test.js) | <code>► Test module for Students Controllers </code> |
+| [Students.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Students.controllers.js)           | <code>► Student controllers for administration </code> |
+| [Teachers.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Teachers.controllers.js)           | <code>► Teacher controllers for administration </code> |
+| [Teachers.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/adimistration/Teachers.controllers.test.js) | <code>► Test module for Teachers Controllers </code> |
 
 </details>
 
@@ -212,8 +212,8 @@
 
 | File                                                                                                                                                          | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Teachers.grades.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Teachers.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Teachers.grades.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.test.js) | <code>► Test module for TeacherGradesControllers </code> |
+| [Teachers.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.js)           | <code>► Grades Teacher controllers for administration </code> |
 
 </details>
 
@@ -221,8 +221,9 @@
 
 | File                                                                                                                                 | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [Login.controller.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/users/Login.controller.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Login.controller.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/users/Login.controller.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Login.controller.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/users/Login.controller.test.js) | <code>► Test module for Login controller </code> |
+| [Login.controller.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/users/Login.controller.js)           | <code>► Login controller </code> |
+</code> |
 
 </details>
 
@@ -230,8 +231,9 @@
 
 | File                                                                                                                                                          | Summary                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [Students.grades.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/students/Students.grades.controllers.test.js) | <code>► INSERT-TEXT-HERE</code> |
-| [Students.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/students/Students.grades.controllers.js)           | <code>► INSERT-TEXT-HERE</code> |
+| [Students.grades.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/students/Students.grades.controllers.test.js) | <code>► Grades Student controllers for administration </code> |
+ </code> |
+| [Students.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/students/Students.grades.controllers.js)           | <code>► Test module for StudentGradesControllers </code> |
 
 </details>
 
@@ -239,7 +241,7 @@
 
 | File                                                                                                       | Summary                         |
 | ---------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [workflow.yaml](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/.github/workflows/workflow.yaml) | <code>► INSERT-TEXT-HERE</code> |
+| [workflow.yaml](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/.github/workflows/workflow.yaml) | <code>► Workflow pipelines  </code> |
 
 </details>
 
@@ -293,14 +295,6 @@
 
 ---
 
-## Project Roadmap
-
-- [x] `► INSERT-TASK-1`
-- [ ] `► INSERT-TASK-2`
-- [ ] `► ...`
-
----
-
 ## Contributing
 
 Contributions are welcome! Here are several ways you can contribute:
@@ -343,19 +337,5 @@ Contributions are welcome! Here are several ways you can contribute:
    </a>
 </p>
 </details>
-
----
-
-## License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-## Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
-
-[**Return**](#-overview)
 
 ---
