@@ -249,7 +249,7 @@
 
 **System Requirements:**
 
-- **JavaScript**: `version x.y.z`
+- **NODE**: `version 20.12.1`
 
 ### Installation
 
@@ -280,7 +280,7 @@
 > Run AS_SUMS_API using the command below:
 >
 > ```console
-> $ node app.js
+> $ node server.js
 > ```
 
 ### Tests
