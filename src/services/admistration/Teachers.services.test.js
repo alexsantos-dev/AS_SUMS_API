@@ -1,5 +1,5 @@
 import TeachersServices from './Teachers.services.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 import Teacher from '../../models/users/Teacher.model.js'
 
 describe('TeachersServices', () => {

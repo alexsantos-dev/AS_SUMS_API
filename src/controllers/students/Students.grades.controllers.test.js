@@ -1,7 +1,7 @@
 import request from 'supertest'
 import app from '../../../index.js'
 import Grade from '../../models/grades/Grade.model.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 
 describe('StudentsGradesControllers', () => {
     let stdToken

@@ -1,5 +1,5 @@
-import Period from "../models/grades/Period.model.js"
-import sequelize from './Data.config.js'
+import Period from "../../models/grades/Period.model.js"
+import sequelize from '../data.config.js'
 
 async function createPeriod() {
     try {

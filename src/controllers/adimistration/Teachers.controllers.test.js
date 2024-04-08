@@ -1,4 +1,4 @@
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 import request from 'supertest'
 import Teacher from '../../models/users/Teacher.model.js'
 import app from '../../../index.js'

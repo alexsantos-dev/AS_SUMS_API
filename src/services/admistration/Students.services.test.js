@@ -1,6 +1,6 @@
 import Student from '../../models/users/Student.model.js'
 import StudentsServices from './Students.services.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 
 describe('StudentsServices', () => {
     let createdStudent

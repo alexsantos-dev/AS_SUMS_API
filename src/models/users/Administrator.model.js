@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 
 const Administrator = sequelize.define('Administration', {
     id: {

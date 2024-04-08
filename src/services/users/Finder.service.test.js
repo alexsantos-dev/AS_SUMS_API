@@ -1,6 +1,6 @@
 import { globalFindOneByReg } from './Finder.service.js'
 import Student from '../../models/users/Student.model.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 
 describe('globalFindOneByReg', () => {
     let createdStudent

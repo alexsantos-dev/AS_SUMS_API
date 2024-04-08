@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 import Student from '../users/Student.model.js'
 import Period from './Period.model.js'
 import Discipline from './Discipline.model.js'

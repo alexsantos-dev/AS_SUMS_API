@@ -1,7 +1,7 @@
 import StudentsGradesServices from './Students.grades.services.js'
 import TeachersGradesServices from '../teachers/Teachers.grades.services.js'
 import Grade from '../../models/grades/Grade.model.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 
 describe('StudentsGradesServices', () => {
     let createdGrade

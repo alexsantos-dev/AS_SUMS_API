@@ -1,6 +1,6 @@
 import request from 'supertest'
 import app from '../../../index.js'
-import sequelize from '../../data/Data.config.js'
+import sequelize from '../../data/data.config.js'
 import Grade from '../../models/grades/Grade.model.js'
 
 describe('TeachersGradesControllers', () => {
