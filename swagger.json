@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "SGU API Documentation",
-    "description": "This documentation provides information about the SGU API endpoints and allows testing of all available routes. Don't forget to register and perform authorization.",
+    "title": "SUMS API Documentation",
+    "description": "This documentation provides information about the SUMS API endpoints and allows testing of all available routes. Don't forget to register and perform authorization.",
     "contact": "alexsantos.web.developer@gmail.com",
     "version": "1.0.0"
   },
@@ -15,7 +15,7 @@
   "paths": {
     "/usr/login": {
       "post": {
-        "summary": "Login to SGU",
+        "summary": "Login to SUMS",
         "description": "Route responsible for logging in a registered user.",
         "tags": ["Login"],
         "requestBody": {
