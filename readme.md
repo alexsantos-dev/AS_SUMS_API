@@ -34,7 +34,7 @@
 
 ## Overview
 
-<code>► This project consists of building a school user management system where users can register, log in and access protected resources. The system has registration, authentication, authorization, password security, automated testing, integration and continuous deployment functionalities. </code>
+<code>► This project consists of building a school user management system where users can register, log in and access protected resources. The system has registration, authentication, authorization, password security, automated testing, integration and continuous delivery functionalities. </code>
 
 ---
 
