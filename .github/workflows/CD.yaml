@@ -1,6 +1,9 @@
 name: Continuous Delivery
 
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
   continuous-delivery:
