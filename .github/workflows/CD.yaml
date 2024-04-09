@@ -1,0 +1,15 @@
+name: Continuous Delivery
+
+on: pull_request
+
+jobs:
+  continuous-delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run tests
+        run: npm install && npm test
