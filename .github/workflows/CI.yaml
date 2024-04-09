@@ -1,6 +1,9 @@
 name: Continuous Integration
 
-on: push
+on:
+  push:
+    branches:
+      - 'dev'
 
 jobs:
   continuous-integration:
