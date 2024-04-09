@@ -5,7 +5,7 @@
     <h1 align="center">SUMS API</h1>
 </p>
 <p align="center">
-    <em><code>► School User Management System </code></em>
+    School User Management System
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/last-commit/alexsantos-dev/AS_SUMS_API?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
@@ -34,7 +34,7 @@
 
 ## Overview
 
-<code>► This project consists of building a school user management system where users can register, log in and access protected resources. The system has registration, authentication, authorization, password security, automated testing, integration and continuous delivery functionalities. </code>
+<p>This project consists of building a school user management system where users can register, log in and access protected resources. The system has registration, authentication, authorization, password security, automated testing, integration and continuous delivery functionalities. </p>
 
 ---
 
