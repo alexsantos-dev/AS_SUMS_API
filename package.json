@@ -23,7 +23,15 @@
     "start": "node --watch --no-warnings server.js",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "school",
+    "system",
+    "users",
+    "management",
+    "api",
+    "node",
+    "express"
+  ],
   "author": "Alex Santos",
   "license": "ISC",
   "dependencies": {
