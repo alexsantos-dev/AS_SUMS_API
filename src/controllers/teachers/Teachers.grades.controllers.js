@@ -5,7 +5,7 @@ async function addGrade(req, res) {
         const { teacherId, studentId, disciplineId, periodId, value } = req.body
 
         if (teacherId && studentId && disciplineId && periodId && value) {
-            const checkValidate = await TeacherGradesServices.checkGradeByPeriodStudentId(periodId, studentId)
+            const checkValidate = await TeacherGradesServices.checkGradeValidate(studentId, periodId, disciplineId)
             if (!checkValidate) {
                 const result = await TeacherGradesServices.addGrade(teacherId, studentId, disciplineId, periodId, value)
                 res.status(200).json({ msg: 'Grade added successfully!', gradeId: result.id })

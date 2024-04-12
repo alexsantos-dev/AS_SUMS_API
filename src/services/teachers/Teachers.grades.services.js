@@ -42,12 +42,13 @@ async function findGradeById(id) {
     }
 }
 
-async function checkGradeByPeriodStudentId(periodId, studentId) {
+async function checkGradeValidate(studentId, periodId, disciplineId) {
     try {
         const period = Grade.findOne({
             where: {
+                StudentId: studentId,
                 PeriodId: periodId,
-                StudentId: studentId
+                DisciplineId: disciplineId
             }
         })
         return period
@@ -78,6 +79,6 @@ export default {
     addGrade,
     editGrade,
     findGradeById,
-    checkGradeByPeriodStudentId,
+    checkGradeValidate,
     getNameFieldById,
 }

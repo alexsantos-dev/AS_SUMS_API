@@ -5,7 +5,7 @@ async function findGradesByStudentId(req, res) {
         const { studentId } = req.params
         const result = await StudentsGradesServices.findGradesByStudentId(studentId)
 
-        if (result.length > 0) {
+        if (Object.keys(result).length > 0) {
             res.status(200).json(result)
         } else {
             res.status(404).json({ err: 'No grades found!' })

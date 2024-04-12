@@ -21,7 +21,7 @@ describe('TeachersControllers', () => {
             name: "teste a",
             sex: "m",
             phone: "12-131236478",
-            email: "teste@gamail.com",
+            email: "testea@gamail.com",
             password: "7803-Aob",
             discipline: "English"
         }
@@ -32,7 +32,7 @@ describe('TeachersControllers', () => {
             .set('Authorization', `Bearer ${token}`)
     })
     afterAll(async () => {
-        await Teacher.destroy({ where: { email: 'teste@gamail.com' } })
+        await Teacher.destroy({ where: { email: 'testea@gamail.com' } })
         await sequelize.close()
     })
 
