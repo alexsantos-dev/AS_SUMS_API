@@ -55,6 +55,58 @@ async function findGradesByStudentId(studentId) {
     }
 }
 
+async function calculateAverageGrades(groupedGrades) {
+    try {
+        const averageGrades = {}
+        let totalAverage = 0
+        let count = 0
+
+        for (const periodId in groupedGrades) {
+            for (const disciplineId in groupedGrades[periodId]) {
+                const grades = groupedGrades[periodId][disciplineId].map(grade => grade.value)
+                const average = grades.reduce((acc, val) => acc + val, 0) / grades.length
+
+                if (!averageGrades[disciplineId]) {
+                    averageGrades[disciplineId] = {
+                        average: parseFloat(average.toFixed(2)),
+                        status: ''
+                    }
+                } else {
+                    averageGrades[disciplineId].average = (parseFloat(averageGrades[disciplineId].average) + average) / 2
+                }
+
+                totalAverage += average
+                count++
+            }
+        }
+
+        for (const disciplineId in averageGrades) {
+            if (averageGrades[disciplineId].average < 5) {
+                averageGrades[disciplineId].status = 'Reprovado'
+            } else if (averageGrades[disciplineId].average < 7) {
+                averageGrades[disciplineId].status = 'Recuperação'
+            } else {
+                averageGrades[disciplineId].status = 'Passed'
+            }
+        }
+
+        const overallAverage = count > 0 ? totalAverage / count : 0
+        averageGrades['OverallAverage'] = {
+            value: parseFloat(overallAverage.toFixed(2)),
+        }
+
+        for (const disciplineId in averageGrades) {
+            delete averageGrades[disciplineId].average
+        }
+
+        return averageGrades
+
+    } catch (error) {
+        console.error({ error: error })
+    }
+}
+
 export default {
-    findGradesByStudentId
+    findGradesByStudentId,
+    calculateAverageGrades
 }
