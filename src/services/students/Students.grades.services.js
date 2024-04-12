@@ -2,7 +2,7 @@ import Grade from '../../models/grades/Grade.model.js'
 import Student from '../../models/users/Student.model.js'
 import Discipline from '../../models/grades/Discipline.model.js'
 import Period from '../../models/grades/Period.model.js'
-S
+
 async function getNameFieldById(id) {
     try {
         const models = [Student, Discipline, Period]
