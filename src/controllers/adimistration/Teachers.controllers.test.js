@@ -6,6 +6,7 @@ import app from '../../../index.js'
 describe('TeachersControllers', () => {
     let createdTeacher
     let token
+    const admId = "41039de7-b006-4bcf-9c1c-1c395407fca7"
     beforeAll(async () => {
         await sequelize.sync()
         const teacherLoginResponse = await request(app)
@@ -27,7 +28,7 @@ describe('TeachersControllers', () => {
         }
 
         createdTeacher = await request(app)
-            .post('/adm/teachers')
+            .post(`/adm/teachers/${admId}`)
             .send(teacherData)
             .set('Authorization', `Bearer ${token}`)
     })
@@ -36,7 +37,7 @@ describe('TeachersControllers', () => {
         await sequelize.close()
     })
 
-    describe('POST create /adm/teachers', () => {
+    describe('POST create /adm/teachers/:id', () => {
         it('should return status 200 and sucess message', async () => {
             const res = createdTeacher
             expect(res.status).toBe(200)
@@ -45,52 +46,52 @@ describe('TeachersControllers', () => {
         it('should return status 409 and a error message', async () => {
             const testTeacher = {}
             const res = await request(app)
-                .post('/adm/teachers')
+                .post(`/adm/teachers/${admId}`)
                 .send(testTeacher)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(409)
             expect(res.body.err).toBe('Send all fields for add teacher!')
         })
     })
-    describe('GET findOneByReg /adm/teachers/reg/:reg', () => {
+    describe('GET findOneByTeacherReg /adm/teachers/tchr-reg/:id?teacherReg', () => {
         it('should return status 200 and a Teacher', async () => {
             const res = await request(app)
-                .get(`/adm/teachers/reg/${createdTeacher.body.result.reg}`)
+                .get(`/adm/teachers/tchr-reg/${admId}?teacherReg=${createdTeacher.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(200)
             expect(res.body.Teacher).toBeTruthy()
         })
         it('should return status 404 and error message', async () => {
             const res = await request(app)
-                .get('/adm/teachers/reg/testReg')
+                .get(`/adm/teachers/tchr-reg/${admId}?teacherReg=testReg`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(404)
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('GET findOneById /adm/teachers/id/:id', () => {
+    describe('GET findOneByTeacherId /adm/teachers/tchr-id/:id?teacherId', () => {
         it('should return status 200 and a Teacher', async () => {
             const res = await request(app)
-                .get(`/adm/teachers/id/${createdTeacher.body.result.id}`)
+                .get(`/adm/teachers/tchr-id/${admId}?teacherId=${createdTeacher.body.result.id}`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(200)
             expect(res.body.Teacher).toBeTruthy()
         })
         it('should return status 404 and error message', async () => {
             const res = await request(app)
-                .get('/adm/teachers/id/testID')
+                .get(`/adm/teachers/tchr-id/${admId}?teacherId=testID`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(404)
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('PATCH update /adm/teachers/:reg', () => {
+    describe('PATCH update /adm/teachers/:id?teacherReg', () => {
         it('should return status 200 and sucess message', async () => {
             const fields = {
                 name: "FlingsBelta"
             }
             const res = await request(app)
-                .patch(`/adm/teachers/${createdTeacher.body.result.reg}`)
+                .patch(`/adm/teachers/${admId}?teacherReg=${createdTeacher.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
                 .send(fields)
             expect(res.status).toBe(200)
@@ -101,7 +102,7 @@ describe('TeachersControllers', () => {
                 "": ""
             }
             const res = await request(app)
-                .patch(`/adm/teachers/${createdTeacher.body.result.reg}`)
+                .patch(`/adm/teachers/${admId}?teacherReg=${createdTeacher.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
                 .send(fields)
             expect(res.status).toBe(409)
@@ -112,40 +113,40 @@ describe('TeachersControllers', () => {
                 name: "fulana"
             }
             const res = await request(app)
-                .patch('/adm/teachers/testReg')
+                .patch(`/adm/teachers/${admId}?teacherReg=testReg`)
                 .set('Authorization', `Bearer ${token}`)
                 .send(fields)
             expect(res.status).toBe(404)
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('DELETE erase /adm/teachers/:reg', () => {
+    describe('DELETE erase /adm/teachers/:id?teacherReg', () => {
         it('should return status 200 and success message', async () => {
             const res = await request(app)
-                .delete(`/adm/teachers/${createdTeacher.body.result.reg}`)
+                .delete(`/adm/teachers/${admId}?teacherReg=${createdTeacher.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(200)
             expect(res.body.msg).toBe('Teacher erased successfully')
         })
         it('should return status 404 and success message', async () => {
             const res = await request(app)
-                .delete('/adm/teachers/testReg')
+                .delete(`/adm/teachers/${admId}?teacherReg=testReg`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(404)
             expect(res.body.err).toBe('Teacher not found!')
         })
     })
-    describe('GET findAll /adm/teachers', () => {
+    describe('GET findAll /adm/teachers/:id', () => {
         it('should return status 200 and a success message', async () => {
             const res = await request(app)
-                .get('/adm/teachers')
+                .get(`/adm/teachers/${admId}`)
                 .set('Authorization', `Bearer ${token}`)
             expect(res.status).toBe(200)
             expect(res.body.Teachers).toBeTruthy()
         })
         it('should return status 404 and error message', async () => {
             const deletedTchr = await request(app)
-                .delete(`/adm/teachers/${createdTeacher.body.result.reg}`)
+                .delete(`/adm/teachers/${admId}?teacherReg=${createdTeacher.body.result.reg}`)
                 .set('Authorization', `Bearer ${token}`)
             if (deletedTchr.status === "200") {
                 const res = await request(app)

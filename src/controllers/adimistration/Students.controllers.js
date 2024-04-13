@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 
 async function create(req, res) {
     try {
+        const { id } = req.params
         const { name, sex, phone, email, password, classRoom } = req.body
 
         if (name && sex && phone && email && password && classRoom) {
@@ -16,12 +17,13 @@ async function create(req, res) {
         }
     }
     catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ error: error })
     }
 }
 
 async function findAll(req, res) {
     try {
+        const { id } = req.params
         const students = await StudentsServices.findAll()
 
         if (students.length > 0) {
@@ -31,30 +33,15 @@ async function findAll(req, res) {
         }
     }
     catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ error: error })
     }
 }
 
-async function findOneByReg(req, res) {
-    try {
-        const { reg } = req.params
-        const student = await StudentsServices.findOneByReg(reg)
-
-        if (student) {
-            res.status(200).json({ Student: student })
-        } else {
-            res.status(404).json({ err: 'Student not found!' })
-        }
-    }
-    catch (error) {
-        res.status(500).json(error)
-    }
-}
-
-async function findOneById(req, res) {
+async function findOneByStudentReg(req, res) {
     try {
         const { id } = req.params
-        const student = await StudentsServices.findOneById(id)
+        const studentReg = req.query.studentReg
+        const student = await StudentsServices.findOneByStudentReg(studentReg)
 
         if (student) {
             res.status(200).json({ Student: student })
@@ -63,16 +50,37 @@ async function findOneById(req, res) {
         }
     }
     catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ error: error })
+    }
+}
+
+async function findOneByStudentId(req, res) {
+    try {
+        const { id } = req.params
+        const studentId = req.query.studentId
+        const student = await StudentsServices.findOneByStudentId(studentId)
+
+        if (student) {
+            res.status(200).json({ Student: student })
+        } else {
+            res.status(404).json({ err: 'Student not found!' })
+        }
+        if (!studentId) {
+            return res.status(404).json({ err: 'id invalid!' })
+        }
+    }
+    catch (error) {
+        res.status(500).json({ error: error })
     }
 }
 
 async function update(req, res) {
     try {
-        const { reg } = req.params
+        const { id } = req.params
+        const studentReg = req.query.studentReg
         const fields = req.body
 
-        const student = await StudentsServices.findOneByReg(reg)
+        const student = await StudentsServices.findOneByStudentReg(studentReg)
 
         if (student) {
             const allowedFields = ['name', 'phone', 'email', 'classRoom', 'status']
@@ -86,7 +94,7 @@ async function update(req, res) {
                 fields.password = await bcrypt.hash(fields.password, 10)
             }
 
-            const result = await StudentsServices.update(reg, fields)
+            const result = await StudentsServices.update(studentReg, fields)
 
             if (result) {
                 res.status(200).json({ msg: 'Student updated successfully!' })
@@ -96,17 +104,18 @@ async function update(req, res) {
         }
     }
     catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ error: error })
     }
 }
 
 async function erase(req, res) {
     try {
-        const { reg } = req.params
-        const student = await StudentsServices.findOneByReg(reg)
+        const { id } = req.params
+        const studentReg = req.query.studentReg
+        const student = await StudentsServices.findOneByStudentReg(studentReg)
 
         if (student) {
-            const result = await StudentsServices.erase(reg)
+            const result = await StudentsServices.erase(studentReg)
 
             if (result) {
                 res.status(200).json({ msg: 'Student erased successfully' })
@@ -116,15 +125,15 @@ async function erase(req, res) {
         }
     }
     catch (error) {
-        res.status(500).json(error)
+        res.status(500).json({ error: error })
     }
 }
 
 export default {
     create,
     findAll,
-    findOneByReg,
-    findOneById,
+    findOneByStudentReg,
+    findOneByStudentId,
     update,
     erase
 }

@@ -34,23 +34,23 @@ describe('StudentsServices', () => {
         })
     })
 
-    describe('findOneByReg', () => {
+    describe('findOneByStudentReg', () => {
         it('should return a student by REG', async () => {
-            const res = await StudentsServices.findOneByReg(createdStudent.reg)
+            const res = await StudentsServices.findOneByStudentReg(createdStudent.reg)
             expect(res).toBeDefined()
         })
         it('should not return a student by REG', async () => {
-            const res = await StudentsServices.findOneByReg('testReg')
+            const res = await StudentsServices.findOneByStudentReg('testReg')
             expect(res).toBeNull()
         })
     })
-    describe('findOneById', () => {
+    describe('findOneByStudentId', () => {
         it('should return a student by ID', async () => {
-            const res = await StudentsServices.findOneById(createdStudent.id)
+            const res = await StudentsServices.findOneByStudentId(createdStudent.id)
             expect(res).toBeDefined()
         })
         it('should not return a student by ID', async () => {
-            const res = await StudentsServices.findOneById('testId')
+            const res = await StudentsServices.findOneByStudentId('testId')
             expect(res).toBeNull()
         })
     })
