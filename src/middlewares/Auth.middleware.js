@@ -16,11 +16,17 @@ export function verifyTypeUser(requiredUserType) {
 
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
             const userType = decoded.typeUser
-
+            const userId = decoded.id
+            const { id } = req.params
             if (userType !== requiredUserType) {
-                return res.status(409).json({ err: `Forbidden: Not a ${requiredUserType} is ${userType}` })
+                return res.status(409).json({ err: 'type user unauthorized!' })
+            }
+            if (userId !== id) {
+                return res.status(409).json({ err: 'id user unauthorized!' })
+
             }
             req.typeUser = userType
+            req.id = userId
             next()
         } catch (error) {
             res.status(403).json({ Authorization: error })

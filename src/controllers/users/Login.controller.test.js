@@ -22,7 +22,7 @@ describe('POST Users authentication login /usr/login', () => {
     it('Shold be return a not found error', async () => {
         const res = await request(app).post('/usr/login').send(nullUser)
         expect(res.status).toBe(404)
-        expect(res.body.error).toBe('User not founded!')
+        expect(res.body.error).toBe('User not found!')
     })
 
     const userWrongPassword = {

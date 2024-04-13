@@ -4,10 +4,10 @@ import Period from '../../models/grades/Period.model.js'
 import Student from '../../models/users/Student.model.js'
 import Teacher from '../../models/users/Teacher.model.js'
 
-async function addGrade(teacherId, studentId, disciplineId, periodId, value) {
+async function addGrade(id, studentId, disciplineId, periodId, value) {
     try {
         const grade = Grade.create({
-            TeacherId: teacherId,
+            TeacherId: id,
             StudentId: studentId,
             DisciplineId: disciplineId,
             PeriodId: periodId,
@@ -20,11 +20,11 @@ async function addGrade(teacherId, studentId, disciplineId, periodId, value) {
     }
 }
 
-async function editGrade(id, fields) {
+async function editGrade(gradeId, fields) {
     try {
         const edit = await Grade.update(fields, {
             where: {
-                id: id
+                id: gradeId
             }
         })
         return edit
@@ -33,9 +33,9 @@ async function editGrade(id, fields) {
     }
 }
 
-async function findGradeById(id) {
+async function findGradeById(gradeId) {
     try {
-        const grade = Grade.findByPk(id)
+        const grade = Grade.findByPk(gradeId)
         return grade
     } catch (error) {
         console.error(error)

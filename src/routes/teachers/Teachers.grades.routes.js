@@ -4,11 +4,9 @@ import { verifyTypeUser } from '../../middlewares/Auth.middleware.js'
 
 const router = Router()
 
-router.use(verifyTypeUser('tchr'))
-
-router.post('/grades', TeachersGradesControllers.addGrade)
-router.patch('/grades/:id', TeachersGradesControllers.editGrade)
-router.get('/grades/:id', TeachersGradesControllers.findGradeById)
+router.post('/grades/:id', verifyTypeUser('tchr'), TeachersGradesControllers.addGrade)
+router.patch('/grades/:id', verifyTypeUser('tchr'), TeachersGradesControllers.editGrade)
+router.get('/grades/:id', verifyTypeUser('tchr'), TeachersGradesControllers.findGradeById)
 
 
 export default { router }

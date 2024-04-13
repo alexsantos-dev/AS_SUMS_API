@@ -2,12 +2,13 @@ import TeacherGradesServices from '../../services/teachers/Teachers.grades.servi
 
 async function addGrade(req, res) {
     try {
-        const { teacherId, studentId, disciplineId, periodId, value } = req.body
+        const { id } = req.params
+        const { studentId, disciplineId, periodId, value } = req.body
 
-        if (teacherId && studentId && disciplineId && periodId && value) {
+        if (id && studentId && disciplineId && periodId && value) {
             const checkValidate = await TeacherGradesServices.checkGradeValidate(studentId, periodId, disciplineId)
             if (!checkValidate) {
-                const result = await TeacherGradesServices.addGrade(teacherId, studentId, disciplineId, periodId, value)
+                const result = await TeacherGradesServices.addGrade(id, studentId, disciplineId, periodId, value)
                 res.status(200).json({ msg: 'Grade added successfully!', gradeId: result.id })
 
             } else {
@@ -25,13 +26,14 @@ async function addGrade(req, res) {
 async function editGrade(req, res) {
     try {
         const { id } = req.params
+        const gradeId = req.query.gradeId
         const fields = req.body
-        const checkId = await TeacherGradesServices.findGradeById(id)
+        const checkId = await TeacherGradesServices.findGradeById(gradeId)
 
         if (checkId) {
-            const allowedFields = ['TeacherId', 'StudentId', 'DisciplineId', 'PeriodId', 'value']
+            const allowedFields = ['id', 'StudentId', 'DisciplineId', 'PeriodId', 'value']
             const isValidUpdate = Object.keys(fields).every(field => allowedFields.includes(field))
-            const result = await TeacherGradesServices.editGrade(id, fields)
+            const result = await TeacherGradesServices.editGrade(gradeId, fields)
 
             if (isValidUpdate && result) {
                 res.status(200).json({ msg: 'Grade updated successfully' })
@@ -49,10 +51,11 @@ async function editGrade(req, res) {
 async function findGradeById(req, res) {
     try {
         const { id } = req.params
-        const result = await TeacherGradesServices.findGradeById(id)
+        const gradeId = req.query.gradeId
+        const result = await TeacherGradesServices.findGradeById(gradeId)
 
         if (result) {
-            const fields = [result.StudentId, result.DisciplineId, result.PeriodId, result.TeacherId]
+            const fields = [result.StudentId, result.DisciplineId, result.PeriodId, result.id]
             const names = []
 
             for (const field of fields) {
@@ -63,7 +66,7 @@ async function findGradeById(req, res) {
             result.StudentId = names[0]
             result.DisciplineId = names[1]
             result.PeriodId = names[2]
-            result.TeacherId = names[3]
+            result.id = names[3]
 
             res.status(200).json(result)
         } else {
