@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "node --watch --no-warnings server.js",
-    "test": "jest"
+    "test": "jest "
   },
   "keywords": [
     "school",

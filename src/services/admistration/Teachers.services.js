@@ -25,11 +25,11 @@ async function findAll() {
     }
 }
 
-async function findOneByReg(reg) {
+async function findOneByTeacherReg(teacherReg) {
     try {
         const teacher = await Teacher.findOne({
             where: {
-                reg: reg
+                reg: teacherReg
             }
         })
         return teacher
@@ -39,9 +39,13 @@ async function findOneByReg(reg) {
     }
 }
 
-async function findOneById(id) {
+async function findOneByTeacherId(teacherId) {
     try {
-        const teacher = await Teacher.findByPk(id)
+        const teacher = await Teacher.findOne({
+            where: {
+                id: teacherId
+            }
+        })
         return teacher
     }
     catch (error) {
@@ -49,11 +53,11 @@ async function findOneById(id) {
     }
 }
 
-async function update(reg, fields) {
+async function update(teacherReg, fields) {
     try {
         const teacher = await Teacher.update(fields, {
             where: {
-                reg: reg
+                reg: teacherReg
             }
         })
         return teacher
@@ -63,11 +67,11 @@ async function update(reg, fields) {
     }
 }
 
-async function erase(reg) {
+async function erase(teacherReg) {
     try {
         const teacher = await Teacher.destroy({
             where: {
-                reg: reg
+                reg: teacherReg
             }
         })
         return teacher
@@ -80,8 +84,8 @@ async function erase(reg) {
 export default {
     create,
     findAll,
-    findOneById,
-    findOneByReg,
+    findOneByTeacherId,
+    findOneByTeacherReg,
     update,
     erase
 }

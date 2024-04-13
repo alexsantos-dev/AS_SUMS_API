@@ -6,7 +6,7 @@ describe('TeachersGradesServices', () => {
     let createdGrade
     const gradeData = {
         teacherId: '091e1f3c-898b-4900-ab91-853f69d99b28',
-        studentId: '374fbf39-1c31-4727-8128-644e67c3cfb0',
+        studentId: '40d972e7-1dbe-4204-8e4d-da34f6dff278',
         disciplineId: '17029a7a-f388-4acd-a1ca-e44aad5f6238',
         periodId: 1,
         value: 8.5
@@ -45,13 +45,13 @@ describe('TeachersGradesServices', () => {
             expect(Object.keys(res).length).toBeGreaterThan(0)
         })
     })
-    describe('checkGradeByPeriodStudentId', () => {
+    describe('checkGradeValidate', () => {
         it('should check a grade', async () => {
-            const res = await TeachersGradesServices.checkGradeByPeriodStudentId(createdGrade.PeriodId, createdGrade.StudentId)
+            const res = await TeachersGradesServices.checkGradeValidate(createdGrade.StudentId, createdGrade.PeriodId, createdGrade.DisciplineId)
             expect(res).toBeDefined()
         })
         it('should not check a grade', async () => {
-            const res = await TeachersGradesServices.checkGradeByPeriodStudentId('periodTestId', 'studentTestId')
+            const res = await TeachersGradesServices.checkGradeValidate('studentTestId', 'periodTestId', 'disciplineId')
             expect(res).toBeNull()
         })
     })

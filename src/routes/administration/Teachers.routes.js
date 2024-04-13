@@ -3,13 +3,11 @@ import TeachersControllers from '../../controllers/adimistration/Teachers.contro
 import { verifyTypeUser } from '../../middlewares/Auth.middleware.js'
 const router = Router()
 
-router.use(verifyTypeUser('adm'))
-
-router.post('/', TeachersControllers.create)
-router.get('/', TeachersControllers.findAll)
-router.get('/reg/:reg', TeachersControllers.findOneByReg)
-router.get('/id/:id', TeachersControllers.findOneById)
-router.patch('/:reg', TeachersControllers.update)
-router.delete('/:reg', TeachersControllers.erase)
+router.post('/:id', verifyTypeUser('adm'), TeachersControllers.create)
+router.get('/:id', verifyTypeUser('adm'), TeachersControllers.findAll)
+router.get('/tchr-reg/:id', verifyTypeUser('adm'), TeachersControllers.findOneByTeacherReg)
+router.get('/tchr-id/:id', verifyTypeUser('adm'), TeachersControllers.findOneByTeacherId)
+router.patch('/:id', verifyTypeUser('adm'), TeachersControllers.update)
+router.delete('/:id', verifyTypeUser('adm'), TeachersControllers.erase)
 
 export default { router }

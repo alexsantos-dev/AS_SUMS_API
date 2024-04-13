@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 
 async function create(req, res) {
     try {
+        const { id } = req.params
         const { name, sex, phone, email, password, discipline } = req.body
 
         if (name && sex && phone && email && password && discipline) {
@@ -22,6 +23,7 @@ async function create(req, res) {
 
 async function findAll(req, res) {
     try {
+        const { id } = req.params
         const teachers = await TeachersServices.findAll()
 
         if (teachers.length > 0) {
@@ -35,10 +37,11 @@ async function findAll(req, res) {
     }
 }
 
-async function findOneByReg(req, res) {
+async function findOneByTeacherReg(req, res) {
     try {
-        const { reg } = req.params
-        const teacher = await TeachersServices.findOneByReg(reg)
+        const { id } = req.params
+        const teacherReg = req.query.teacherReg
+        const teacher = await TeachersServices.findOneByTeacherReg(teacherReg)
 
         if (teacher) {
             res.status(200).json({ Teacher: teacher })
@@ -51,10 +54,11 @@ async function findOneByReg(req, res) {
     }
 }
 
-async function findOneById(req, res) {
+async function findOneByTeacherId(req, res) {
     try {
         const { id } = req.params
-        const teacher = await TeachersServices.findOneById(id)
+        const teacherId = req.query.teacherId
+        const teacher = await TeachersServices.findOneByTeacherId(teacherId)
 
         if (teacher) {
             res.status(200).json({ Teacher: teacher })
@@ -69,10 +73,11 @@ async function findOneById(req, res) {
 
 async function update(req, res) {
     try {
-        const { reg } = req.params
+        const { id } = req.params
+        const teacherReg = req.query.teacherReg
         const fields = req.body
 
-        const teacher = await TeachersServices.findOneByReg(reg)
+        const teacher = await TeachersServices.findOneByTeacherReg(teacherReg)
 
         if (teacher) {
             const allowedFields = ['name', 'phone', 'email', 'classRoom', 'status']
@@ -86,7 +91,7 @@ async function update(req, res) {
                 fields.password = await bcrypt.hash(fields.password, 10)
             }
 
-            const result = await TeachersServices.update(reg, fields)
+            const result = await TeachersServices.update(teacherReg, fields)
 
             if (result) {
                 res.status(200).json({ msg: 'Teacher updated successfully!' })
@@ -102,11 +107,12 @@ async function update(req, res) {
 
 async function erase(req, res) {
     try {
-        const { reg } = req.params
-        const teacher = await TeachersServices.findOneByReg(reg)
+        const { id } = req.params
+        const teacherReg = req.query.teacherReg
+        const teacher = await TeachersServices.findOneByTeacherReg(teacherReg)
 
         if (teacher) {
-            const result = await TeachersServices.erase(reg)
+            const result = await TeachersServices.erase(teacherReg)
 
             if (result) {
                 res.status(200).json({ msg: 'Teacher erased successfully' })
@@ -123,8 +129,8 @@ async function erase(req, res) {
 export default {
     create,
     findAll,
-    findOneByReg,
-    findOneById,
+    findOneByTeacherReg,
+    findOneByTeacherId,
     update,
     erase
 }

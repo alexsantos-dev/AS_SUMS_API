@@ -4,8 +4,6 @@ import { verifyTypeUser } from '../../middlewares/Auth.middleware.js'
 
 const router = Router()
 
-router.use(verifyTypeUser('std'))
-
-router.get('/grades/:studentId', StudentsGradesControllers.findGradesByStudentId)
+router.get('/grades/:id', verifyTypeUser('std'), StudentsGradesControllers.findGradesByStudentId)
 
 export default { router }
