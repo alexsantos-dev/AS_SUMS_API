@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../../../index.js'
+import app from '../../../app.js'
 import sequelize from '../../data/data.config.js'
 import Grade from '../../models/grades/Grade.model.js'
 

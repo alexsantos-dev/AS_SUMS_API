@@ -1,7 +1,7 @@
 import sequelize from '../../data/data.config.js'
 import request from 'supertest'
 import Student from '../../models/users/Student.model.js'
-import app from '../../../index.js'
+import app from '../../../app.js'
 
 describe('StudentsControllers', () => {
     let token

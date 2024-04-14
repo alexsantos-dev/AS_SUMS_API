@@ -22,5 +22,25 @@ export async function globalFindOneByReg(reg) {
     }
 }
 
+export async function globalFindOneById(id) {
+    try {
+        const allModels = [Administrator, Teacher, Student]
+
+        for (const model of allModels) {
+            const result = await model.findOne({
+                where: {
+                    id: id
+                }
+            })
+            if (result) {
+                return result
+            }
+        }
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 
 

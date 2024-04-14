@@ -1,4 +1,4 @@
-import app from '../../index.js'
+import app from '../../app.js'
 import request from 'supertest'
 
 const stdId = "40d972e7-1dbe-4204-8e4d-da34f6dff278"
@@ -16,7 +16,7 @@ describe('AuthMiddleware', () => {
         const loginResponse = await request(app)
             .post('/usr/login')
             .send({
-                reg: 'std-142518-24-JS',
+                reg: 'std-453710-24-T',
                 password: '7803-Aob'
             })
         const studentToken = loginResponse.body.token
