@@ -1,8 +1,0 @@
-JWT:
-- Token autenticado de outros usuários do mesmo tipo pode ser usado para acessar serviços
-
-StudentsGradesServices
-- Adicionar service de delete
-
-StudentsGradesControllers
-- - Ajustar teste de findAll 404 StudentsGradesControllers

@@ -91,6 +91,7 @@
 | File                                                                                                                                 | Summary                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | [Teachers.grades.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/teachers/Teachers.grades.routes.js) | <code>► Grade routes for Teachers </code> |
+| [Teachers.attendances.routes.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/routes/teachers/Teachers.attendances.routes.js) | <code>► Attedance routes for Teachers </code> |
 
 </details>
 
@@ -137,6 +138,16 @@
 | [Period.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Period.model.js)         | <code>► Period data model </code>     |
 | [Grade.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/grades/Grade.model.js)           | <code>► Grade data model </code>      |
 
+
+</details>
+
+<details closed><summary>src.models.attendance</summary>
+
+| File                                                                                                                   | Summary                               |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [Attendance.model.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/models/attendance/Attendance.model.js) | <code>► Attendance data model </code> |
+
+
 </details>
 
 <details closed><summary>src.services.teachers</summary>
@@ -145,6 +156,8 @@
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | [Teachers.grades.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.js)           | <code>► Grades Services for Teachers </code>          |
 | [Teachers.grades.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.grades.services.test.js) | <code>► Test module for TeacherGradesServices </code> |
+| [Teachers.attendances.services.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.attendancess.services.js)           | <code>► Attendance Services for Teachers </code>          |
+| [Teachers.attendances.services.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/services/teachers/Teachers.attendances.services.test.js) | <code>► Test module for TeacherAttendancesServices </code> |
 
 </details>
 
@@ -202,7 +215,9 @@
 | File                                                                                                                                                          | Summary                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | [Teachers.grades.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.test.js) | <code>► Test module for TeacherGradesControllers </code>      |
-| [Teachers.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.js)           | <code>► Grades Teacher controllers for administration </code> |
+| [Teachers.grades.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.grades.controllers.js)           | <code>► Grades Teacher controllers for Grades </code> |
+| [Teachers.attendances.controllers.test.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.attendances.controllers.test.js) | <code>► Test module for TeacherAttendancesControllers </code>      |
+| [Teachers.attendances.controllers.js](https://github.com/alexsantos-dev/AS_SUMS_API/blob/master/src/controllers/teachers/Teachers.attendances.controllers.js)           | <code>► Attendances Teacher controllers for Students </code> |
 
 </details>
 
