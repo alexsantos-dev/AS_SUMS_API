@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/alexsantos-dev/github-assets/blob/main/sums-api/e-learning.png" width=128px>
+  <img src="https://github.com/alexsantos-dev/github-assets/blob/main/sums-api/e-learning.png" height=86px>
 </p>
 <p align="center">
     <h1 align="center">School User Management System (SUMS)</h1>
