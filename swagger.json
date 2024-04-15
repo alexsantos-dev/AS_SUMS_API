@@ -27,7 +27,7 @@
                 "properties": {
                   "reg": {
                     "type": "string",
-                    "description": "Registration number of the user."
+                    "description": "registration code of the user."
                   },
                   "password": {
                     "type": "string",
@@ -87,11 +87,22 @@
         }
       }
     },
-    "/adm/teachers": {
+    "/adm/teachers/{admId}": {
       "post": {
         "summary": "Create a new teacher",
         "tags": ["ADM: Teachers"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "admId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Administrator"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -149,6 +160,17 @@
         "summary": "Get all teachers",
         "tags": ["ADM: Teachers"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "admId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Administrator"
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of teachers"
@@ -169,20 +191,29 @@
         }
       }
     },
-    "/adm/teachers/reg/{reg}": {
+    "/adm/teachers/tchr-reg/{admId}?teacherReg={teacherReg}": {
       "get": {
-        "summary": "Get teacher by registration number",
+        "summary": "Get teacher by registration code",
         "tags": ["ADM: Teachers"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "admId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the teacher"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "teacherReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "registration code of the teacher"
           }
         ],
         "responses": {
@@ -205,20 +236,29 @@
         }
       }
     },
-    "/adm/teachers/{reg}": {
+    "/adm/teachers/tchr-reg/{adm-id}?teacherReg={teacherReg}": {
       "patch": {
-        "summary": "Update teacher details by registration number",
+        "summary": "Update teacher details by registration code",
         "tags": ["ADM: Teachers"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "adm-id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the teacher"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "teacherReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "registration code of the teacher"
           }
         ],
         "requestBody": {
@@ -262,18 +302,27 @@
         }
       },
       "delete": {
-        "summary": "Delete teacher by registration number",
+        "summary": "Delete teacher by registration code",
         "tags": ["ADM: Teachers"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "adm-id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the teacher"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "teacherReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "registration code of the teacher"
           }
         ],
         "responses": {
@@ -296,7 +345,7 @@
         }
       }
     },
-    "/adm/teachers/id/{id}": {
+    "/adm/teachers/{admId}?teacherId={teacherId}": {
       "get": {
         "summary": "Get teacher by ID",
         "tags": ["ADM: Teachers"],
@@ -309,7 +358,16 @@
             "schema": {
               "type": "string"
             },
-            "description": "ID of the teacher"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "teacherId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Teacher"
           }
         ],
         "responses": {
@@ -332,11 +390,22 @@
         }
       }
     },
-    "/adm/students": {
+    "/adm/students/{admID}": {
       "post": {
         "summary": "Create a new Student",
         "tags": ["ADM:Students"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "admID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Administrator"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -393,6 +462,17 @@
       "get": {
         "summary": "Get all Students",
         "tags": ["ADM:Students"],
+        "parameters": [
+          {
+            "name": "admID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Administrator"
+          }
+        ],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
@@ -414,20 +494,29 @@
         }
       }
     },
-    "/adm/students/reg/{reg}": {
+    "/adm/students/std-reg/{admId}?studentReg={studentReg}": {
       "get": {
-        "summary": "Get Student by registration number",
+        "summary": "Get Student by registration code",
         "tags": ["ADM:Students"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "admId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the Student"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "studentReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration code of the Student"
           }
         ],
         "responses": {
@@ -450,20 +539,29 @@
         }
       }
     },
-    "/adm/students/{reg}": {
+    "/adm/students/{admId}?studentReg={studentReg}": {
       "patch": {
-        "summary": "Update Student details by registration number",
+        "summary": "Update Student details by registration code",
         "tags": ["ADM:Students"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "admId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the Student"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "studentReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration code of the Student"
           }
         ],
         "requestBody": {
@@ -507,18 +605,27 @@
         }
       },
       "delete": {
-        "summary": "Delete Student by registration number",
+        "summary": "Delete Student by registration code",
         "tags": ["ADM:Students"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "reg",
+            "name": "admId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Registration number of the Student"
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "studentReg",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Registration code of the Student"
           }
         ],
         "responses": {
@@ -541,14 +648,23 @@
         }
       }
     },
-    "/adm/students/id/{id}": {
+    "/adm/students/{admid}?studentId={studentId}": {
       "get": {
         "summary": "Get Student by ID",
         "tags": ["ADM:Students"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
-            "name": "id",
+            "name": "admid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Administrator"
+          },
+          {
+            "name": "studentId",
             "in": "path",
             "required": true,
             "schema": {
@@ -577,11 +693,22 @@
         }
       }
     },
-    "/tchr/grades": {
+    "/tchr/grades/{id}": {
       "post": {
         "summary": "Create a new Grade",
         "tags": ["TCHR: Grades"],
         "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Teacher"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -589,22 +716,14 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "teacherId": { "type": "string" },
                   "studentId": { "type": "string" },
                   "disciplineId": { "type": "string" },
                   "perioId": { "type": "number" },
                   "value": { "type": "number" }
                 },
-                "required": [
-                  "teacherId",
-                  "studentId",
-                  "disciplineId",
-                  "perioId",
-                  "value"
-                ]
+                "required": ["studentId", "disciplineId", "perioId", "value"]
               },
               "example": {
-                "teacherId": "9b12c5df-a276-4bfc-b50e-178aa550abf7",
                 "studentId": "14f3ce21-62c0-430a-a6e2-c77127b018b6",
                 "disciplineId": "17029a7a-f388-4acd-a1ca-e44aad5f6238",
                 "periodId": "1",
@@ -636,7 +755,7 @@
         }
       }
     },
-    "/tchr/grades/{id}": {
+    "/tchr/grades/{id}?gradeId={gradeId}": {
       "get": {
         "summary": "Get Grade by ID",
         "tags": ["TCHR: Grades"],
@@ -645,6 +764,15 @@
           {
             "name": "id",
             "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Teacher"
+          },
+          {
+            "name": "gradeId",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
@@ -684,6 +812,15 @@
               "type": "string"
             },
             "description": "ID of the Grade"
+          },
+          {
+            "name": "gradeId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Grade"
           }
         ],
         "requestBody": {
@@ -712,6 +849,68 @@
           },
           "404": {
             "description": "Grade not found!"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tchr/attendances/:id": {
+      "post": {
+        "summary": "Regist a new attendance",
+        "tags": ["TCHR: Attendances"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the Teacher"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "studentId": { "type": "string" },
+                  "disciplineId": { "type": "string" },
+                  "perioId": { "type": "string" },
+                  "value": { "type": "number" }
+                }
+              },
+              "required": ["studentId", "disciplineId", "perioId", "value"]
+            },
+            "example": {
+              "studentId": "40d972e7-1dbe-4204-8e4d-da34f6dff278",
+              "disciplineId": "9db9d362-1ff3-4c69-98ee-f2d4ee649934",
+              "periodId": "1",
+              "value": "present"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student attendance resgistred!"
+          },
+          "406": {
+            "description": "Attendance has been added for this student on the current date!"
+          },
+          "409": {
+            "description": "Send all fields to register attendance!"
           },
           "500": {
             "description": "Internal Server Error",
@@ -834,6 +1033,31 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
+          "value": { "type": "number" },
+          "student": {
+            "$ref": "#/components/schemas/Students",
+            "description": "Student associated with this grade"
+          },
+          "period": {
+            "$ref": "#/components/schemas/Period",
+            "description": "Period associated with this grade"
+          },
+          "discipline": {
+            "$ref": "#/components/schemas/Discipline",
+            "description": "Discipline associated with this grade"
+          },
+          "teacher": {
+            "$ref": "#/components/schemas/Teacher",
+            "description": "Teacher associated with this grade"
+          }
+        }
+      },
+      "Attendance": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "classRoom": { "type": "string" },
+          "date": { "type": "string" },
           "value": { "type": "number" },
           "student": {
             "$ref": "#/components/schemas/Students",
