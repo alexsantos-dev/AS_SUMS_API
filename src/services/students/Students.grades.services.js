@@ -35,8 +35,8 @@ async function findGradesByStudentId(studentId) {
         const groupedResult = result.reduce((acc, obj) => {
             const { PeriodId, DisciplineId, ...rest } = obj.dataValues
             acc[PeriodId] = acc[PeriodId] || {}
-            acc[PeriodId][DisciplineId] = acc[PeriodId][DisciplineId] || []
-            acc[PeriodId][DisciplineId].push(rest)
+            acc[PeriodId][DisciplineId] = acc[PeriodId][DisciplineId] || {}
+            acc[PeriodId][DisciplineId] = rest
             return acc
         }, {})
 
@@ -55,56 +55,47 @@ async function findGradesByStudentId(studentId) {
     }
 }
 
-async function calculateAverageGrades(groupedGrades) {
+function calculateAverageGrades(grades) {
     try {
-        const averageGrades = {}
-        let totalAverage = 0
+        const averages = {}
+        const overallGrades = {}
         let count = 0
 
-        for (const periodId in groupedGrades) {
-            for (const disciplineId in groupedGrades[periodId]) {
-                const grades = groupedGrades[periodId][disciplineId].map(grade => grade.value)
-                const average = grades.reduce((acc, val) => acc + val, 0) / grades.length
+        for (const period in grades) {
+            count++
+            const periodGrades = grades[period]
 
-                if (!averageGrades[disciplineId]) {
-                    averageGrades[disciplineId] = {
-                        average: parseFloat(average.toFixed(2)),
-                        status: ''
-                    }
+            for (const discipline in periodGrades) {
+                const gradeValue = periodGrades[discipline].value
+                if (averages[discipline]) {
+                    averages[discipline].value += gradeValue
+                    overallGrades[discipline] += gradeValue
                 } else {
-                    averageGrades[disciplineId].average = (parseFloat(averageGrades[disciplineId].average) + average) / 2
+                    averages[discipline] = { value: gradeValue, status: '' }
+                    overallGrades[discipline] = gradeValue
                 }
-
-                totalAverage += average
-                count++
             }
         }
 
-        for (const disciplineId in averageGrades) {
-            if (averageGrades[disciplineId].average < 5) {
-                averageGrades[disciplineId].status = 'Reprovado'
-            } else if (averageGrades[disciplineId].average < 7) {
-                averageGrades[disciplineId].status = 'Recuperação'
-            } else {
-                averageGrades[disciplineId].status = 'Passed'
-            }
+        for (const discipline in averages) {
+            averages[discipline].value = parseFloat((averages[discipline].value / count).toFixed(2))
+            averages[discipline].status = averages[discipline].value >= 7 ? 'Passed' : (averages[discipline].value >= 5 ? 'Recovery' : 'Disapproved')
         }
 
-        const overallAverage = count > 0 ? totalAverage / count : 0
-        averageGrades['OverallAverage'] = {
-            value: parseFloat(overallAverage.toFixed(2)),
-        }
+        const overallAverage = Object.values(overallGrades).reduce((acc, val) => acc + val, 0) / (count * Object.keys(overallGrades).length)
 
-        for (const disciplineId in averageGrades) {
-            delete averageGrades[disciplineId].average
+        return {
+            disciplineAverages: averages,
+            overallAverage: parseFloat(overallAverage.toFixed(2)),
         }
-
-        return averageGrades
 
     } catch (error) {
         console.error({ error: error })
+        return null
     }
 }
+
+
 
 export default {
     findGradesByStudentId,
